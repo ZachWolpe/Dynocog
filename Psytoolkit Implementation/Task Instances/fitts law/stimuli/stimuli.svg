@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1052.3622"
+   height="744.09448"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="stimuli.svg"
+   inkscape:export-filename="/home/stoet/work-tmp/lesson/logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3780">
+      <stop
+         style="stop-color:#5a5aff;stop-opacity:1;"
+         offset="0"
+         id="stop3782" />
+      <stop
+         style="stop-color:#0000ff;stop-opacity:0;"
+         offset="1"
+         id="stop3784" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3780-5"
+       id="linearGradient3786-8"
+       x1="-462.85715"
+       y1="646.64789"
+       x2="337.14285"
+       y2="646.64789"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3780-5">
+      <stop
+         style="stop-color:#0000ff;stop-opacity:1;"
+         offset="0"
+         id="stop3782-7" />
+      <stop
+         style="stop-color:#0000ff;stop-opacity:0;"
+         offset="1"
+         id="stop3784-3" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3883">
+      <rect
+         style="opacity:0.6017699;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect3885"
+         width="800"
+         height="100"
+         x="-244.43652"
+         y="887.20477" />
+    </clipPath>
+    <filter
+       id="filter3990"
+       x="-0.25"
+       width="1.5"
+       y="-0.25"
+       height="1.5"
+       inkscape:menu-tooltip="Thick acrylic paint texture with high texture depth"
+       inkscape:menu="Bumps"
+       inkscape:label="Thick acrylic"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3992"
+         result="result9"
+         in="SourceGraphic"
+         stdDeviation="1" />
+      <feTurbulence
+         id="feTurbulence3994"
+         baseFrequency="0.02"
+         numOctaves="5"
+         type="fractalNoise"
+         result="result7"
+         seed="0" />
+      <feColorMatrix
+         id="feColorMatrix3996"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         result="result5" />
+      <feComposite
+         id="feComposite3998"
+         in2="result5"
+         in="result9"
+         operator="out"
+         result="result6" />
+      <feGaussianBlur
+         id="feGaussianBlur4000"
+         stdDeviation="0.5"
+         result="result11" />
+      <feDisplacementMap
+         id="feDisplacementMap4002"
+         in2="result11"
+         result="result4"
+         scale="100"
+         yChannelSelector="G"
+         xChannelSelector="A"
+         in="result5" />
+      <feComposite
+         id="feComposite4004"
+         in2="result4"
+         in="result9"
+         operator="in"
+         result="result2" />
+      <feComposite
+         id="feComposite4006"
+         in2="SourceGraphic"
+         operator="in"
+         result="fbSourceGraphic" />
+      <feBlend
+         id="feBlend4008"
+         in2="fbSourceGraphic"
+         mode="multiply"
+         result="fbSourceGraphic" />
+      <feDiffuseLighting
+         id="feDiffuseLighting4010"
+         diffuseConstant="0.69999999"
+         surfaceScale="10"
+         in="fbSourceGraphic"
+         result="result10">
+        <feDistantLight
+           id="feDistantLight4012"
+           elevation="25"
+           azimuth="235" />
+      </feDiffuseLighting>
+      <feComposite
+         id="feComposite4014"
+         in2="fbSourceGraphic"
+         operator="in"
+         result="result2"
+         in="result10" />
+      <feComposite
+         id="feComposite4016"
+         in2="result2"
+         k3="1"
+         k2="1"
+         operator="arithmetic"
+         result="result4"
+         in="fbSourceGraphic"
+         k1="0"
+         k4="0" />
+    </filter>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3910"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="1"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35557692"
+     inkscape:cx="443.18635"
+     inkscape:cy="431.89344"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1631"
+     inkscape:window-height="936"
+     inkscape:window-x="2"
+     inkscape:window-y="79"
+     inkscape:window-maximized="0"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     borderlayer="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(597.2074,-246.62438)">
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       x="-351.49313"
+       y="487.86172"
+       id="text3261"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3263"
+         x="-351.49313"
+         y="487.86172"
+         style="font-weight:bold" /></text>
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="instruction.png"
+       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3072"
+       width="548.505"
+       height="324.47818"
+       x="-628.47552"
+       y="443.22388" />
+    <rect
+       y="443.22388"
+       x="-40.101948"
+       height="324.47818"
+       width="548.505"
+       id="rect4079-6"
+       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="afterwords.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3074"
+       d="m -618.35841,711.03344 0,19.87499 c 0,14.7199 12.6122,26.5625 28.28125,26.5625 l 473.75,0 c 15.01996,0 27.232649,-10.8825 28.218749,-24.75 l 0,-21.68749 -530.249999,0 z"
+       style="color:#000000;fill:#00ff00;stroke:none;stroke-width:5.33780861;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="instruction.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="color:#000000;fill:#00ff00;stroke:none;stroke-width:5.33780861;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m -29.984841,711.03344 0,19.87499 c 0,14.7199 12.61219,26.5625 28.2812498,26.5625 l 473.7499512,0 c 15.02003,0 27.23273,-10.8825 28.21883,-24.75 l 0,-21.68749 -530.250031,0 z"
+       id="rect3046"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="afterwords.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="instruction.png"
+       ry="26.570223"
+       rx="28.283499"
+       y="452.99133"
+       x="-617.27954"
+       height="305.55756"
+       width="530.31561"
+       id="rect3076"
+       style="color:#000000;fill:none;stroke:#ff0000;stroke-width:5.33780861;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       style="color:#000000;fill:none;stroke:#ff0000;stroke-width:5.33780861;stroke-miterlimit:4;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3283-5"
+       width="530.31561"
+       height="305.55756"
+       x="-28.905964"
+       y="452.99133"
+       rx="28.283499"
+       ry="26.570223"
+       inkscape:export-filename="afterwords.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       x="76.091255"
+       y="713.22729"
+       id="text3265-6"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="afterwords.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="76.091255"
+         y="713.22729"
+         id="tspan3032-9" /><tspan
+         sodipodi:role="line"
+         x="76.091255"
+         y="740.72729"
+         id="tspan3034-3"
+         style="font-weight:bold;fill:#006400">Press the space bar to exit</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="instruction.png"
+       sodipodi:linespacing="125%"
+       id="text3062"
+       y="713.22729"
+       x="-553.26831"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan3064"
+         y="713.22729"
+         x="-553.26831"
+         sodipodi:role="line" /><tspan
+         style="font-weight:bold;fill:#006400"
+         id="tspan3066"
+         y="740.72729"
+         x="-553.26831"
+         sodipodi:role="line">Press the space bar to continue</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="instruction.png"
+       sodipodi:linespacing="125%"
+       id="text3404"
+       y="488.8988"
+       x="-596.37701"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         style="font-weight:bold;fill:#00bfff;stroke:none"
+         y="488.8988"
+         x="-596.37701"
+         id="tspan3406"
+         sodipodi:role="line">Fitt's Law</tspan><tspan
+         id="tspan3426"
+         y="516.3988"
+         x="-596.37701"
+         sodipodi:role="line">Click the small yellow rectangle in the top</tspan><tspan
+         y="543.8988"
+         x="-596.37701"
+         sodipodi:role="line"
+         id="tspan3078">left corner.</tspan><tspan
+         y="571.3988"
+         x="-596.37701"
+         sodipodi:role="line"
+         id="tspan3080"></tspan><tspan
+         y="598.8988"
+         x="-596.37701"
+         sodipodi:role="line"
+         id="tspan3088">Another red rectangle will appear. Move</tspan><tspan
+         y="626.3988"
+         x="-596.37701"
+         sodipodi:role="line"
+         id="tspan3082">the cursor on it as soon as you can.</tspan><tspan
+         y="653.8988"
+         x="-596.37701"
+         sodipodi:role="line"
+         id="tspan3084"></tspan><tspan
+         y="681.3988"
+         x="-596.37701"
+         sodipodi:role="line"
+         id="tspan3086">There are 20 trials.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       x="12.140178"
+       y="538.61426"
+       id="text3090"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="afterwords.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3092"
+         x="12.140178"
+         y="538.61426"
+         style="font-weight:bold;fill:#00bfff;stroke:none">Fitt's Law</tspan><tspan
+         id="tspan3106"
+         sodipodi:role="line"
+         x="12.140178"
+         y="566.11426">The time it takes you to move the cursor</tspan><tspan
+         sodipodi:role="line"
+         x="12.140178"
+         y="593.61426"
+         id="tspan3135">on the red rectangle depends on the size</tspan><tspan
+         sodipodi:role="line"
+         x="12.140178"
+         y="621.11426"
+         id="tspan3137">and the distance.</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+options
+  bitmapdir stimuli
+
+bitmaps
+  Lu
+  Uo
+  Uu
+  Ul
+  Ll
+  Lo
+  Ou
+  Ol
+  Tt
+  Ts
+  Th
+  St
+  Ss
+  Sh
+  Ht
+  Hs
+  correct
+  wrong
+  tooslow
+  Navon_Law_home        # navon_title
+  Navon_Instructions_1  # instruction1
+  Navon_Instructions_2  # instruction2
+  Navon_Instructions_3  # instruction3  
+  Navon_mini_instructions
+
+fonts
+  arial 18
+
+table navon
+  "Lu none 0"    Lu 2
+  "Uo local 1"   Uo 1
+  "Uu none 0"    Uu 2
+  "Ul none 0"    Ul 2
+  "Ll none 0"    Ll 2
+  "Lo local 1"   Lo 1
+  "Ou global 2"  Ou 1
+  "Ol global 2"  Ol 1
+  "Tt none 0"    Tt 2
+  "Ts none 0"    Ts 2
+  "Th local 1"   Th 1
+  "St none 0"    St 2
+  "Ss none 0"    Ss 2
+  "Sh local 1"   Sh 1
+  "Ht global 2"  Ht 1
+  "Hs global 2"  Hs 1
+
+task navon
+  table navon
+  keys z x            # keys b n
+  show bitmap @2
+  readkey @3 4000
+  if STATUS == CORRECT
+    show bitmap correct
+  fi
+  if STATUS == WRONG
+    show bitmap wrong
+  fi
+  if STATUS == TIMEOUT
+    show bitmap tooslow
+  fi
+  delay 1000
+  clear 1 2
+  delay 500
+  save @1 STATUS RT
+
+block myblock
+  message Navon_Law_home        # navon_title
+  message Navon_Instructions_1  # instruction1
+  message Navon_Instructions_2  # instruction2
+  message Navon_Instructions_3  # instruction3  
+  delay 500
+  tasklist
+    navon 50 all_before_repeat
+  end
+  feedback
+    text color yellow
+    text align left
+    set &GlobalRT mean c5 ; select c4 == 1 && c3 == 2
+    set &LocalRT  mean c5 ; select c4 == 1 && c3 == 1
+    set &NoneRT   mean c5 ; select c4 == 1 && c3 == 0
+    set &GlobalPE count ; select c4 != 1 && c3 == 2
+    set &LocalPE  count ; select c4 != 1 && c3 == 1
+    set &NonePE   count ; select c4 != 1 && c3 == 0
+    text -200 -200 "Feedback Navon task"
+    text -200 -150 "Reaction Times per experimental condition:"
+    text -200 -100 &GlobalRT ; prefix "Global level (H or O): " ; postfix " ms"
+    text -200 -50  &LocalRT ; prefix "Local level (h or o):" ; postfix " ms"
+    text -200 0    &NoneRT ; prefix "No target at all:" ; postfix " ms"
+    text -200 50   "Error count per experimental condition:"
+    text -200 100  &GlobalPE ; prefix "Global level (H or O): " ; postfix " errors"
+    text -200 150  &LocalPE ; prefix "Local level (h or o):" ; postfix " errors"
+    text -200 200  &NonePE ; prefix "No target at all:" ; postfix " errors"
+    text -200 250  "press space bar to continue"
+  end

@@ -1,0 +1,5 @@
+David Navon’s original paper about the speed with which people process global and local information is extremely popular (Navon, 1977). The paper has been cited nearly 1,800 times (checked in the beginning of 2016).
+
+The basic idea of Navon’s study is that when objects are arranged in groups, there are global features and local features. For example, a group of trees has local features (the individual trees) and the feature of a forest (the trees together).
+
+The basic finding of Navon’s work is that people are faster in identifying features at the global than at the local level. This effect is also known as global precedence.

@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2897"
+   sodipodi:version="0.32"
+   inkscape:version="0.92+devel unknown"
+   sodipodi:docname="stimuli-except-cards.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.1">
+  <defs
+     id="defs2899">
+    <linearGradient
+       id="linearGradient3702">
+      <stop
+         style="stop-color:#ff8100;stop-opacity:1;"
+         offset="0"
+         id="stop3704" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3706" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2905" />
+    <inkscape:perspective
+       id="perspective2860"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective2977"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3126"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3218"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3346"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3572"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4459"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective2947"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.67165782"
+     inkscape:cx="559.89298"
+     inkscape:cy="453.39844"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:document-rotation="0" />
+  <metadata
+     id="metadata2902">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       y="330.46075"
+       x="120"
+       height="49"
+       width="99"
+       id="rect3716"
+       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="correct.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect2928"
+       width="99"
+       height="49"
+       x="120"
+       y="388.75345"
+       inkscape:export-filename="error.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       transform="scale(0.92812213,1.0774444)"
+       id="text3718"
+       y="339.42471"
+       x="130.84358"
+       style="line-height:0%;fill:#ffffff"
+       xml:space="preserve"
+       inkscape:export-filename="correct.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         style="font-size:30.55766106px;line-height:1.25;fill:#ffffff"
+         y="339.42471"
+         x="130.84358"
+         id="tspan3720"
+         sodipodi:role="line">Good !</tspan></text>
+    <text
+       xml:space="preserve"
+       style="line-height:0%;fill:#000000"
+       x="130.68079"
+       y="396.14471"
+       id="text3712"
+       transform="scale(0.93641305,1.0679048)"
+       inkscape:export-filename="error.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3714"
+         x="130.68079"
+         y="396.14471"
+         style="font-size:23.30364227px;line-height:1.25;fill:#000000">WRONG!</tspan></text>
+    <rect
+       y="12.585915"
+       x="296.79266"
+       height="400"
+       width="600"
+       id="rect2823"
+       style="color:#000000;fill:#008000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="instruction1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="color:#000000;fill:#008000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect2848"
+       width="600"
+       height="400"
+       x="296.79266"
+       y="422.24872"
+       inkscape:export-filename="instruction2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       y="833.93451"
+       x="296.79266"
+       height="400"
+       width="600"
+       id="rect2825"
+       style="color:#000000;fill:#008000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="instruction3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g2841"
+       transform="translate(738.88183,-352.00948)"
+       inkscape:export-filename="instruction1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="674.05627"
+         x="-420.78943"
+         height="86.99012"
+         width="560.37823"
+         id="rect2839"
+         style="color:#000000;fill:#00a600;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         rx="20.843946"
+         ry="20.843946" />
+      <text
+         id="text2827"
+         y="699.72699"
+         x="-413.58035"
+         style="line-height:0%;fill:#004300;fill-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1"
+           y="699.72699"
+           x="-413.58035"
+           id="tspan2829"
+           sodipodi:role="line">Press space to go to next intruction</tspan><tspan
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1"
+           id="tspan2831"
+           y="724.72699"
+           x="-413.58035"
+           sodipodi:role="line">Press 'q' to quit instruction and start test.</tspan><tspan
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1"
+           id="tspan2833"
+           y="749.72699"
+           x="-413.58035"
+           sodipodi:role="line">Press arrows to go up and down through instructions.</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="line-height:0%"
+       x="335.82233"
+       y="57.033363"
+       id="text2874"
+       inkscape:export-filename="instruction1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan2876"
+         x="335.82233"
+         y="57.033363"
+         style="font-size:20px;line-height:1.25"> </tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2882"
+       style="line-height:0.01%"
+       inkscape:export-filename="instruction1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion2884"><rect
+           id="rect2886"
+           width="556.33215"
+           height="260.97037"
+           x="317.61508"
+           y="30.734024" /></flowRegion><flowPara
+         id="flowPara2888"
+         style="font-size:36px;line-height:1.25"> </flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2890"
+       style="line-height:0.01%"><flowRegion
+         id="flowRegion2892"><rect
+           id="rect2894"
+           width="617.02295"
+           height="345.93747"
+           x="1017.5821"
+           y="30.734024" /></flowRegion><flowPara
+         id="flowPara2896"
+         style="font-size:36px;line-height:1.25"> </flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2898"
+       style="line-height:0.01%;fill:#ffffff"
+       transform="translate(-692.47533,-9.7371033)"
+       inkscape:export-filename="instruction1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
+         id="flowRegion2900"><rect
+           id="rect2902"
+           width="473.38809"
+           height="327.73022"
+           x="1062.0886"
+           y="67.148491"
+           style="fill:#ffffff" /></flowRegion><flowPara
+         id="flowPara2904"
+         style="font-weight:bold;font-size:20px;line-height:1.25;fill:#ffffff">Wisconsin Card Sorting Test analogue</flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara3850">In this task, you need to match a card to one</flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara2910">of four tasks presented at the top of the screen.</flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara2917"> </flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara2919">Click one of the four cards that match the</flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara2921">card on the left. Follow your selection, you</flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara2923">will get feedback. If your match was not </flowPara><flowPara
+         style="font-size:20px;line-height:1.25;fill:#ffffff"
+         id="flowPara2925">correct, you need to try a different rule.</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2905"
+       style="line-height:0.01%"><flowRegion
+         id="flowRegion2907"><rect
+           id="rect2909"
+           width="102.12501"
+           height="60.073536"
+           x="1298.7898"
+           y="39.522377" /></flowRegion><flowPara
+         id="flowPara2911"
+         style="font-size:20px;line-height:1.25"> </flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="line-height:0%;fill:#ffffff"
+       x="344.06381"
+       y="446.3501"
+       id="text2927"
+       inkscape:export-filename="instruction2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan2929"
+         x="344.06381"
+         y="446.3501"
+         style="font-size:20px;line-height:1.25">For example: If you match according to color, you</tspan><tspan
+         sodipodi:role="line"
+         x="344.06381"
+         y="471.3501"
+         id="tspan2931"
+         style="font-size:20px;line-height:1.25">would click the first card. If you match according</tspan><tspan
+         sodipodi:role="line"
+         x="344.06381"
+         y="496.3501"
+         id="tspan2933"
+         style="font-size:20px;line-height:1.25">to shape, you would select the second card. If</tspan><tspan
+         sodipodi:role="line"
+         x="344.06381"
+         y="521.3501"
+         id="tspan2935"
+         style="font-size:20px;line-height:1.25">you match according to number, you would select</tspan><tspan
+         sodipodi:role="line"
+         x="344.06381"
+         y="546.3501"
+         id="tspan2937"
+         style="font-size:20px;line-height:1.25">the fourth card.</tspan></text>
+    <g
+       id="g2983"
+       transform="matrix(0.61596248,0,0,0.69813364,-335.84647,186.52214)"
+       inkscape:export-filename="instruction2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="528.52094"
+         x="1230.3059"
+         height="242.69708"
+         width="540.6618"
+         id="rect2977"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <g
+         transform="translate(-97.789823,291.25308)"
+         id="g4438">
+        <rect
+           y="242.61694"
+           x="1652.1731"
+           height="99"
+           width="99"
+           id="rect3941"
+           style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.85389543;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="cross3.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           id="path3943"
+           d="m 1672.1304,249.59111 0,9.0625 -9.0312,0 0,10.9375 9.0312,0 0,9.03125 10.9688,0 0,-9.03125 9.0312,0 0,-10.9375 -9.0312,0 0,-9.0625 -10.9688,0 z"
+           style="color:#000000;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:1.85389674;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="cross3.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           inkscape:connector-curvature="0" />
+        <path
+           id="path3945"
+           d="m 1672.1304,302.24736 0,9.03125 -9.0312,0 0,10.93749 9.0312,0 0,9.0625 10.9688,0 0,-9.0625 9.0312,0 0,-10.93749 -9.0312,0 0,-9.03125 -10.9688,0 z"
+           style="color:#000000;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:1.85389674;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="cross3.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           inkscape:connector-curvature="0" />
+        <path
+           id="path3947"
+           d="m 1717.2867,276.61906 0,9.03125 -9.0313,0 0,10.9375 9.0313,0 0,9.0625 10.9687,0 0,-9.0625 9.0313,0 0,-10.9375 -9.0313,0 0,-9.03125 -10.9687,0 z"
+           style="color:#000000;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:1.85389674;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="cross3.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(-102.85989,288.66638)"
+         id="g4429">
+        <rect
+           y="245.20364"
+           x="1441.5197"
+           height="99"
+           width="99"
+           id="rect3931-1"
+           style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.85389543;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="cirle1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="arc"
+           style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.85389674;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path4005"
+           sodipodi:cx="44.167915"
+           sodipodi:cy="173.36617"
+           sodipodi:rx="14.722638"
+           sodipodi:ry="15.267921"
+           d="M 58.890553,173.36617 A 14.722638,15.267921 0 0 1 44.167915,188.63409 14.722638,15.267921 0 0 1 29.445277,173.36617 14.722638,15.267921 0 0 1 44.167915,158.09824 14.722638,15.267921 0 0 1 58.890553,173.36617 Z"
+           transform="translate(1446.8517,121.33749)"
+           inkscape:export-filename="cirle1.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <g
+         transform="translate(-105.07254,289.11921)"
+         id="g4433">
+        <rect
+           y="244.75081"
+           x="1551.5941"
+           height="99"
+           width="99"
+           id="rect4107"
+           style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.85389543;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="triangle2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="star"
+           style="color:#000000;fill:#32cd32;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path4109"
+           sodipodi:sides="3"
+           sodipodi:cx="-82.883003"
+           sodipodi:cy="218.07936"
+           sodipodi:r1="25.10671"
+           sodipodi:r2="12.553355"
+           sodipodi:arg1="0.52359878"
+           sodipodi:arg2="1.5707963"
+           inkscape:flatsided="true"
+           inkscape:rounded="0"
+           inkscape:randomized="0"
+           d="m -61.139954,230.63272 -43.486096,0 21.743047,-37.66007 z"
+           transform="matrix(0.69905809,0,0,0.71041851,1632.8606,115.14898)"
+           inkscape:export-filename="triangle2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           sodipodi:type="star"
+           style="color:#000000;fill:#32cd32;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           id="path4115"
+           sodipodi:sides="3"
+           sodipodi:cx="-82.883003"
+           sodipodi:cy="218.07936"
+           sodipodi:r1="25.10671"
+           sodipodi:r2="12.553355"
+           sodipodi:arg1="0.52359878"
+           sodipodi:arg2="1.5707963"
+           inkscape:flatsided="true"
+           inkscape:rounded="0"
+           inkscape:randomized="0"
+           d="m -61.139954,230.63272 -43.486096,0 21.743047,-37.66007 z"
+           transform="matrix(0.69905809,0,0,0.71041851,1677.7568,164.22444)"
+           inkscape:export-filename="triangle2.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <g
+         transform="translate(-102.85989,288.03214)"
+         id="g4444">
+        <rect
+           y="245.83788"
+           x="1765.105"
+           height="99"
+           width="99"
+           id="rect4087-3"
+           style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.85389543;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           inkscape:export-filename="star4.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.65101211,0.25468696,-0.25882589,0.66159173,1897.4972,144.98417)"
+           d="m -61.139954,230.63272 -16.63714,-1.0853 -10.325888,13.09001 -4.108982,-16.15823 -15.640216,-5.77547 14.097652,-8.90105 0.659706,-16.65944 12.821808,10.65709 16.047933,-4.52064 -6.173336,15.48749 z"
+           inkscape:randomized="0"
+           inkscape:rounded="0"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.1519173"
+           sodipodi:arg1="0.52359878"
+           sodipodi:r2="12.553355"
+           sodipodi:r1="25.10671"
+           sodipodi:cy="218.07936"
+           sodipodi:cx="-82.883003"
+           sodipodi:sides="5"
+           id="path4202"
+           style="color:#000000;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           sodipodi:type="star"
+           inkscape:export-filename="star4.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.65101211,0.25468696,-0.25882589,0.66159173,1942.5505,144.98417)"
+           d="m -61.139954,230.63272 -16.63714,-1.0853 -10.325888,13.09001 -4.108982,-16.15823 -15.640216,-5.77547 14.097652,-8.90105 0.659706,-16.65944 12.821808,10.65709 16.047933,-4.52064 -6.173336,15.48749 z"
+           inkscape:randomized="0"
+           inkscape:rounded="0"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.1519173"
+           sodipodi:arg1="0.52359878"
+           sodipodi:r2="12.553355"
+           sodipodi:r1="25.10671"
+           sodipodi:cy="218.07936"
+           sodipodi:cx="-82.883003"
+           sodipodi:sides="5"
+           id="path4204"
+           style="color:#000000;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           sodipodi:type="star"
+           inkscape:export-filename="star4.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.65101211,0.25468696,-0.25882589,0.66159173,1897.4972,195.66908)"
+           d="m -61.139954,230.63272 -16.63714,-1.0853 -10.325888,13.09001 -4.108982,-16.15823 -15.640216,-5.77547 14.097652,-8.90105 0.659706,-16.65944 12.821808,10.65709 16.047933,-4.52064 -6.173336,15.48749 z"
+           inkscape:randomized="0"
+           inkscape:rounded="0"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.1519173"
+           sodipodi:arg1="0.52359878"
+           sodipodi:r2="12.553355"
+           sodipodi:r1="25.10671"
+           sodipodi:cy="218.07936"
+           sodipodi:cx="-82.883003"
+           sodipodi:sides="5"
+           id="path4206"
+           style="color:#000000;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           sodipodi:type="star"
+           inkscape:export-filename="star4.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           transform="matrix(0.65101211,0.25468696,-0.25882589,0.66159173,1942.5505,195.66908)"
+           d="m -61.139954,230.63272 -16.63714,-1.0853 -10.325888,13.09001 -4.108982,-16.15823 -15.640216,-5.77547 14.097652,-8.90105 0.659706,-16.65944 12.821808,10.65709 16.047933,-4.52064 -6.173336,15.48749 z"
+           inkscape:randomized="0"
+           inkscape:rounded="0"
+           inkscape:flatsided="false"
+           sodipodi:arg2="1.1519173"
+           sodipodi:arg1="0.52359878"
+           sodipodi:r2="12.553355"
+           sodipodi:r1="25.10671"
+           sodipodi:cy="218.07936"
+           sodipodi:cx="-82.883003"
+           sodipodi:sides="5"
+           id="path4208"
+           style="color:#000000;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           sodipodi:type="star"
+           inkscape:export-filename="star4.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+      </g>
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="triangle2.png"
+         style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.85389543;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect4107-0"
+         width="99"
+         height="99"
+         x="1236.0737"
+         y="666.45038" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="triangle2.png"
+         transform="matrix(0.69905809,0,0,0.71041851,1341.3696,534.44562)"
+         d="m -61.139954,230.63272 -43.486096,0 21.743047,-37.66007 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="true"
+         sodipodi:arg2="1.5707963"
+         sodipodi:arg1="0.52359878"
+         sodipodi:r2="12.553355"
+         sodipodi:r1="25.10671"
+         sodipodi:cy="218.07936"
+         sodipodi:cx="-82.883003"
+         sodipodi:sides="3"
+         id="path4109-2"
+         style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="star" />
+      <path
+         sodipodi:type="star"
+         style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="path2973"
+         sodipodi:sides="3"
+         sodipodi:cx="-82.883003"
+         sodipodi:cy="218.07936"
+         sodipodi:r1="25.10671"
+         sodipodi:r2="12.553355"
+         sodipodi:arg1="0.52359878"
+         sodipodi:arg2="1.5707963"
+         inkscape:flatsided="true"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m -61.139954,230.63272 -43.486096,0 21.743047,-37.66007 z"
+         transform="matrix(0.69905809,0,0,0.71041851,1343.0128,593.13284)"
+         inkscape:export-filename="triangle2.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         sodipodi:type="star"
+         style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="path2975"
+         sodipodi:sides="3"
+         sodipodi:cx="-82.883003"
+         sodipodi:cy="218.07936"
+         sodipodi:r1="25.10671"
+         sodipodi:r2="12.553355"
+         sodipodi:arg1="0.52359878"
+         sodipodi:arg2="1.5707963"
+         inkscape:flatsided="true"
+         inkscape:rounded="0"
+         inkscape:randomized="0"
+         d="m -61.139954,230.63272 -43.486096,0 21.743047,-37.66007 z"
+         transform="matrix(0.69905809,0,0,0.71041851,1314.1776,564.29755)"
+         inkscape:export-filename="triangle2.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="triangle2.png"
+         transform="matrix(0.69905809,0,0,0.71041851,1374.2511,561.89461)"
+         d="m -61.139954,230.63272 -43.486096,0 21.743047,-37.66007 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="true"
+         sodipodi:arg2="1.5707963"
+         sodipodi:arg1="0.52359878"
+         sodipodi:r2="12.553355"
+         sodipodi:r1="25.10671"
+         sodipodi:cy="218.07936"
+         sodipodi:cx="-82.883003"
+         sodipodi:sides="3"
+         id="path4115-1"
+         style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.63070273;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="star" />
+      <text
+         id="text2979"
+         y="663.08569"
+         x="1427.3472"
+         style="line-height:0%;fill:#ffff00"
+         xml:space="preserve"><tspan
+           y="663.08569"
+           x="1427.3472"
+           id="tspan2981"
+           sodipodi:role="line"
+           style="font-size:20px;line-height:1.25">click one of the top four</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="line-height:0%;fill:#ffffff"
+       x="363.52283"
+       y="901.65546"
+       id="text3011"
+       inkscape:export-filename="instruction3.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3013"
+         x="363.52283"
+         y="901.65546"
+         style="font-size:20px;line-height:1.25">You will need to find out whether to match</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="926.65546"
+         id="tspan3015"
+         style="font-size:20px;line-height:1.25">according to color, number, or shape. Once</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="951.65546"
+         id="tspan3017"
+         style="font-size:20px;line-height:1.25">you have figured out what rule to use, you</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="976.65546"
+         id="tspan3019"
+         style="font-size:20px;line-height:1.25">can relax for a while. But, that is not all. The</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="1001.6555"
+         id="tspan3023"
+         style="font-size:20px;line-height:1.25">matching rule changes now and then! You need</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="1026.6555"
+         id="tspan3027"
+         style="font-size:20px;line-height:1.25">to carefully monitor the feedback. If the</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="1051.6555"
+         id="tspan3029"
+         style="font-size:20px;line-height:1.25">computer gives you error messages, you need</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="1076.6555"
+         id="tspan3031"
+         style="font-size:20px;line-height:1.25">to change your rule! That is all!</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="1101.6555"
+         id="tspan3033"
+         style="font-size:20px;line-height:1.25">There are 60 trials!</tspan><tspan
+         sodipodi:role="line"
+         x="363.52283"
+         y="1126.6555"
+         id="tspan3852"
+         style="font-size:20px;line-height:1.25"> </tspan></text>
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.99999934;marker:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4013"
+       width="99"
+       height="99"
+       x="87.467659"
+       y="546.30328"
+       inkscape:export-filename="/home/stoet/work-tmp/new-psytoolkit-examples/wcst/stimuli/timeout.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g3866"
+       transform="translate(738.88183,57.425189)"
+       inkscape:export-filename="instruction2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="674.05627"
+         x="-420.78943"
+         height="86.99012"
+         width="560.37823"
+         id="rect3868"
+         style="color:#000000;fill:#00a600;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         rx="20.843946"
+         ry="20.843946" />
+      <text
+         id="text3870"
+         y="699.72699"
+         x="-413.58035"
+         style="line-height:0%;fill:#004300;fill-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1"
+           y="699.72699"
+           x="-413.58035"
+           id="tspan3872"
+           sodipodi:role="line">Press space to go to next intruction</tspan><tspan
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1"
+           id="tspan3874"
+           y="724.72699"
+           x="-413.58035"
+           sodipodi:role="line">Press 'q' to quit instruction and start test.</tspan><tspan
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1"
+           id="tspan3876"
+           y="749.72699"
+           x="-413.58035"
+           sodipodi:role="line">Press arrows to go up and down through instructions.</tspan></text>
+    </g>
+    <g
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="instruction3.png"
+       transform="translate(738.88183,469.83757)"
+       id="g3854">
+      <rect
+         ry="20.843946"
+         rx="20.843946"
+         style="color:#000000;fill:#00a600;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect3856"
+         width="560.37823"
+         height="86.99012"
+         x="-420.78943"
+         y="674.05627" />
+      <text
+         xml:space="preserve"
+         style="line-height:0%;fill:#004300;fill-opacity:1"
+         x="-413.58035"
+         y="699.72699"
+         id="text3858"><tspan
+           sodipodi:role="line"
+           id="tspan3860"
+           x="-413.58035"
+           y="699.72699"
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1">Press space to go to next intruction</tspan><tspan
+           sodipodi:role="line"
+           x="-413.58035"
+           y="724.72699"
+           id="tspan3862"
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1">Press 'q' to quit instruction and start test.</tspan><tspan
+           sodipodi:role="line"
+           x="-413.58035"
+           y="749.72699"
+           id="tspan3864"
+           style="font-size:20px;line-height:1.25;fill:#004300;fill-opacity:1">Press arrows to go up and down through instructions.</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="32.63821"
+       y="145.9525"
+       id="text394"><tspan
+         sodipodi:role="line"
+         id="tspan392"
+         x="32.63821"
+         y="145.9525">Hello</tspan></text>
+  </g>
+</svg>

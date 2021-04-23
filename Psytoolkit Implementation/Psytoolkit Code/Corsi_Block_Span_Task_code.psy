@@ -1,0 +1,159 @@
+options
+  mouse on
+  set &Count 2 # starts with showing two blocks
+
+bitmaps
+  Corsi_home  # titlescreen
+  yellow  # used for the yellow highlighting
+  purple  # the normal block color (will always be shown 9 of them)
+  done    # for the done button
+  ticked  # the blue tick mark when user clicked on block
+  correct # the smiley face feedback
+  wrong   # the frowney face feedback
+  Corsi_Task_instructions  # instructions  # the instructions at start of experiment
+  ready1  # the countdown, step 1
+  ready2  # the countdown, step 2
+  ready3  # the countdown, step 3
+  GO_corsi # My 'GO' sign
+
+fonts
+  arial 30
+
+sounds
+  gosignal go.mp3 # the sound played when participant needs to start
+
+part delay
+  delay 300
+  clear -1
+  delay 300
+
+task corsi
+  # define a grid of 24 possible positions (6x4) where the 9 purple blocks will be positioned
+  # here we define simply the x-positions and y-positions
+  set &&xpos -330 -200 -70 70 200 330   -330 -200 -70 70 200 330   -330 -200 -70 70 200 330   -330 -200 -70 70 200 330
+  set &&ypos -250 -250 -250 -250 -250 -250  -120 -120 -120 -120 -120 -120  -10 -10 -10 -10 -10 -10  120 120 120 120 120 120
+  ## select 9 blocks out of the grid of 24 x/y positions. Call those 9 positions &&used_pos
+  set &&used_pos range 1 24 ## first just fill the array with 1 to 24
+  set &&used_pos sample 9 from &&used_pos ## take 9 random numbers out of those 24
+  ## Now we select of those 9 blocks a few for highlighting
+  # select n blocks out of the 9 blocks for highlighting
+  set &&tmpsequence range 1 9
+  set &&corsi sample &Count from &&tmpsequence
+  # mouse off so that people cannot mouse during sequence presentation
+  mouse off
+  # show the nine purple blocks first (each trial, these will be different)
+  show bitmap purple &&xpos[&&used_pos[1]] &&ypos[&&used_pos[1]]
+  show bitmap purple &&xpos[&&used_pos[2]] &&ypos[&&used_pos[2]]
+  show bitmap purple &&xpos[&&used_pos[3]] &&ypos[&&used_pos[3]]
+  show bitmap purple &&xpos[&&used_pos[4]] &&ypos[&&used_pos[4]]
+  show bitmap purple &&xpos[&&used_pos[5]] &&ypos[&&used_pos[5]]
+  show bitmap purple &&xpos[&&used_pos[6]] &&ypos[&&used_pos[6]]
+  show bitmap purple &&xpos[&&used_pos[7]] &&ypos[&&used_pos[7]]
+  show bitmap purple &&xpos[&&used_pos[8]] &&ypos[&&used_pos[8]]
+  show bitmap purple &&xpos[&&used_pos[9]] &&ypos[&&used_pos[9]]
+  show bitmap done 350 250
+  # now we are going to highlight some of the blocks (in yellow)
+  # there will always at least be two yellow blocks
+  # more yellow blocks depends on where we are in the expetiment (&Count)
+  show bitmap yellow &&xpos[&&used_pos[&&corsi[1]]] &&ypos[&&used_pos[&&corsi[1]]]
+  part delay
+  show bitmap yellow &&xpos[&&used_pos[&&corsi[2]]] &&ypos[&&used_pos[&&corsi[2]]]
+  part delay
+  if &Count > 2
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[3]]] &&ypos[&&used_pos[&&corsi[3]]]
+    part delay
+  fi
+  if &Count > 3
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[4]]] &&ypos[&&used_pos[&&corsi[4]]]
+    part delay
+  fi
+  if &Count > 4
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[5]]] &&ypos[&&used_pos[&&corsi[5]]]
+    part delay
+  fi
+  if &Count > 5
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[6]]] &&ypos[&&used_pos[&&corsi[6]]]
+    part delay
+  fi
+  if &Count > 6
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[7]]] &&ypos[&&used_pos[&&corsi[7]]]
+    part delay
+  fi
+  if &Count > 7
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[8]]] &&ypos[&&used_pos[&&corsi[8]]]
+    part delay
+  fi
+  if &Count > 8
+    show bitmap yellow &&xpos[&&used_pos[&&corsi[9]]] &&ypos[&&used_pos[&&corsi[9]]]
+    part delay
+  fi
+  # go!
+  sound gosignal
+  show bitmap GO_corsi 0 0
+  delay 500
+  clear -1
+  mouse show  # now show cursor again
+  delay 100   # not really necessary, but gives a bit of time between sound and people's response
+  # read in sequence
+  set &&clicked_positions 0 times &Count # array with 9 zeros, to be filled later
+  set $x 0
+  while $x != 10
+    readmouse l 1 999999 range 1 10
+    set $x UNDER_MOUSE
+    if $x != 10
+      set $counter increase
+      set &&clicked_positions[$counter] $x
+      set $my_x getx UNDER_MOUSE
+      set $my_y gety UNDER_MOUSE
+      show bitmap ticked $my_x $my_y ## show the tickmark exactly on the stimulus
+    fi
+  while-end
+  # now check if sequence is correct
+  set $the_same 0 # this means wrong, this is the default assumption
+  if $counter == &Count ## at the very least, people need to have clicked same number as shown yellow images
+    set $the_same arrays_equal &&corsi &&clicked_positions
+  fi
+  ## feedback (a smiley or frowney face in bottom right corner)
+  if $the_same == 1
+    show bitmap correct 350 250
+  fi
+  if $the_same == 0
+    show bitmap wrong 350 250
+  fi
+  delay 1000
+  clear -1
+  delay 1000
+  ## now goto next seq if correct twice
+  set $currentcount &Count
+  if $the_same == 1
+    set &corsispan &Count ## the best score so far
+    set &Count increase
+    set &ErrorCount 0
+  fi
+  ## count errors in a row
+  if $the_same == 0
+    set &ErrorCount increase
+  fi
+  ## save data
+  save &corsispan $currentcount $the_same
+  ## if two errors in a row or if all are correctly clicked, end of task
+  if &ErrorCount == 2 or &Count == 10
+  end tasklist
+fi
+
+block test
+  message Corsi_home              # titlescreen
+  message Corsi_Task_instructions # instructions
+  bitmap ready3
+  delay 1000
+  bitmap ready2
+  delay 1000
+  bitmap ready1
+  delay 1000
+  tasklist
+    corsi 100 all_before_repeat
+  end
+  feedback
+    text 0 100 &corsispan ; prefix "Your Corsi span is " ; postfix " items."
+    text 0 200 "Press space bar to continue"
+  end

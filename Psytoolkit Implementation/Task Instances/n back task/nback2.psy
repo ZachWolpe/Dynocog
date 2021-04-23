@@ -1,0 +1,171 @@
+## Copyright: see http://www.psytoolkit.org/copyright.html
+##
+## this is a two back task
+##
+## the total time window during which people can give a response is
+## the intertrial interval + the stimulus display time
+## the 500 + 2500 is a commonly used timing of events in nback tasks
+
+options
+  bitmapdir stimuli
+  set &stimulus_display_time 500 # stimulus presentation
+  set &iti 2500  # intertrial interval
+  set &choosechance 3 # 1 in "choosechance" are matching. The higher the number, the fewer matches
+  
+fonts
+  arial 18
+
+bitmaps
+  letterA ## 15 letters
+  letterB
+  letterC
+  letterD
+  letterE
+  letterH
+  letterI
+  letterK
+  letterL
+  letterM
+  letterO
+  letterP
+  letterR
+  letterS
+  letterT
+  overlay
+  error_feedback
+  correct_feedback
+  grey_feedback
+  instruction1
+  instruction2
+  realblock1
+  realblock2
+  
+part myfeedback
+  feedback
+    text align left
+    set &Total1 count ; select c3 == 1 && c1 == BLOCKNUMBER ## number of trials where there was a 2back item
+    set &Total2 count ; select c3 == 0 && c1 == BLOCKNUMBER ## number of trials where there was NOT a 3back item
+    set &Matches count     ; select c5 == 1 && c1 == BLOCKNUMBER ## number of matches
+    set &Misses count      ; select c6 == 1 && c1 == BLOCKNUMBER ## number of misses
+    set &FalseAlarms count ; select c7 == 1 && c1 == BLOCKNUMBER ## number of false alarms
+    set &MatchesPerc      expression &Matches     / &Total1 * 100.0
+    set &MissesPerc       expression &Misses      / &Total1 * 100.0
+    set &FalseAlarmsPerc  expression &FalseAlarms / &Total2 * 100.0
+    text -250 -200 "There were 25 trials in total in this block"
+    text -250 -150 &Total1 ; prefix "Total trials that had a match:"
+    text -250 -100 &Total2 ; prefix "Total trials that had no match:"
+    text -250 -50  &Matches ; prefix "Number of correctly matched items:"
+    text -250 -0   &Misses ; prefix "Number of missed items:"
+    text -250  50  &FalseAlarms ; prefix "Number of false alarms:"
+    text -250 100  &MatchesPerc ; prefix "Percentage correct matches:" ; postfix " %"
+    text -250 150  &MissesPerc  ; prefix "Percentage missed items:" ; postfix " %"
+    text -250 200  &FalseAlarmsPerc ; prefix "Percentage false alarms:" ; postfix " %"
+    text -250 250 "Press button Q to continue"
+    wait_for_key q
+  end
+
+## the "part" below is a piece of code used several times in the code.
+## this is just a placeholder which is used in the last later on.
+## see the PsyToolkit documentation on how "part" works in detail
+
+part check_response
+  if $requiredresponse == 0 and STATUS == TIMEOUT
+    set $score 1  ## so far so good
+  fi
+  if $requiredresponse == 0 and STATUS != TIMEOUT
+    set $score 0  ## wrongly pressed during letter presentation.
+    set $false_alarm 1
+    show bitmap error_feedback  ## red rectangle below and over letter
+  fi
+  if $requiredresponse == 1 and STATUS != TIMEOUT
+    set $score 1  ## correctly pressed during letter presentation.
+    set $match 1
+    show bitmap correct_feedback  ## green rectangle below and over letter
+  fi
+
+task twoback
+  keys m
+  set &trialcount increase
+  set $currentletter random 1 15 ## choose random letter out of the 15 options
+  ############################################################################
+  ## is this condition a yes condition?
+  set $memory random 1 &choosechance ## random number for choosing condition
+  ## if a 2back trial
+  if $memory == 1 and &trialcount > 2
+    set $currentletter &nback2
+    set $requiredresponse 1 ## the m key needs to be pressed later, m=stands for Memory
+    set $typeoftrial 1
+  fi
+  ## if a NON n-back trial
+  if $memory != 1 or &trialcount <= 2 ## chose a letter but not that of 3 trials ago
+    set $currentletter random 1 15
+    while $currentletter == &nback2 ## choose anything but NOT that of 3 back
+      set $currentletter random 1 15
+    while-end
+    set $requiredresponse 0 ## no key should be pressed
+    set $typeoftrial 0
+  fi
+  ############################################################################
+  draw off
+    show bitmap $currentletter ## stimulus 1
+    show bitmap grey_feedback  ## stimulus 2
+  draw on
+  readkey 1 &stimulus_display_time
+  set $extrawait expression &stimulus_display_time - RT ## how much time is left between max RT and now?
+  ##############################################################
+  ## determine whether error was made during letter presentation
+  ## people can only make mistake if pressing now when they should not
+  ##############################################################
+  set $score 0 ## this is the default, assume error
+  part check_response
+  set $my_rt RT
+  ###########
+  ## now wait remaining time if needed
+  ###########
+  delay $extrawait ## wait until letter has been on screen total of 760 ms, note this only happens if people already pressed
+  clear 1 ## clear the letter from screen
+  ###########
+  ## now show nothing but allow response during ITI
+  ###########
+  if STATUS == TIMEOUT ## means people did not respond yet
+    readkey 1 &iti
+    set $my_rt expression RT + &stimulus_display_time
+  fi
+  part check_response
+  ## if you pressed, then some time will be left; during that time, no need to further check keys anymore
+  set $extrawait expression &iti - RT ## how much time is left between iti RT and now?
+  ## now check if people missed
+  if $requiredresponse == 1 and $score == 0
+    set $miss 1
+  fi
+  delay $extrawait
+  ### now save the letter for next trial
+  set &nback2 &nback1
+  set &nback1 $currentletter
+  ### save the data
+  save BLOCKNUMBER &trialcount $typeoftrial $score $match $miss $false_alarm $my_rt $memory $currentletter &nback1 &nback2
+
+block training
+  set &trialcount 0 # make sure you use this again if you have another block
+  message instruction1
+  message instruction2
+  tasklist
+    twoback 25
+  end
+  part myfeedback
+
+block nback_real1
+  set &trialcount 0 # make sure you use this again if you have another block
+  message realblock1
+  tasklist
+    twoback 25
+  end
+  part myfeedback
+
+block nback_real2
+  set &trialcount 0 # make sure you use this again if you have another block
+  message realblock2
+  tasklist
+    twoback 25
+  end
+  part myfeedback

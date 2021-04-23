@@ -1,0 +1,202 @@
+options
+  mouse on           # mouse is being used, so do not hide it
+  bitmapdir stimuli  # location of the bitmaps
+  sounddir stimuli   # location of sound files
+  escape             # you can escape by holding escape until end of trial
+
+fonts
+  arial 18
+
+bitmaps
+  circle1blue        # this refers to bitmaps/circle1blue.png
+  circle1green       # etc.
+  circle1red         # each card is 100x100px
+  circle1yellow      # you can change this, of course, making
+  circle2blue        # changes to the SVG file
+  circle2green
+  circle2red
+  circle2yellow
+  circle3blue
+  circle3green
+  circle3red
+  circle3yellow
+  circle4blue
+  circle4green
+  circle4red
+  circle4yellow
+  cross1blue
+  cross1green
+  cross1red
+  cross1yellow
+  cross2blue
+  cross2green
+  cross2red
+  cross2yellow
+  cross3blue
+  cross3green
+  cross3red
+  cross3yellow
+  cross4blue
+  cross4green
+  cross4red
+  cross4yellow
+  star1blue
+  star1green
+  star1red
+  star1yellow
+  star2blue
+  star2green
+  star2red
+  star2yellow
+  star3blue
+  star3green
+  star3red
+  star3yellow
+  star4blue
+  star4green
+  star4red
+  star4yellow
+  triangle1blue
+  triangle1green
+  triangle1red
+  triangle1yellow
+  triangle2blue
+  triangle2green
+  triangle2red
+  triangle2yellow
+  triangle3blue
+  triangle3green
+  triangle3red
+  triangle3yellow
+  triangle4blue
+  triangle4green
+  triangle4red
+  triangle4yellow
+  correct
+  error
+  wcst_title
+  instruction1
+  instruction2
+  instruction3
+  tooslow
+  WCST_home             # new
+  WCST_instructions_1
+  WCST_instructions_2
+  WCST_instructions_3
+
+sounds
+  good  # this sound file is taken from gnomebaker
+  wrong # this sound file is taken is from tuxcart
+
+# you can create a different table with wcst.r and include it here
+
+table wcsttable
+  # include table.txt
+  include wcst.txt
+
+# one line of the table consists of the following information
+# column 1 : card
+# column 2 : response (bitmap to be clicked 1 to 4)
+# colomn 3 : response in previous task (or 0 if no previous task)
+# column 4 : trial number in a task sequence, 1 is first, thus rule switch
+# column 5 : name of the task
+# column 6 : stimulus description
+
+task wcst
+  table wcsttable  # use the table wcsttable
+  delay 1000       # wait 1 second
+  draw off         # show next 5 bitmaps at once
+    show bitmap circle1red     -175 -100  # bitmap number 1
+    show bitmap triangle2green  -25 -100  # bitmap number 2
+    show bitmap cross3blue      125 -100  # bitmap number 3
+    show bitmap star4yellow     275 -100  # bitmap number 4
+    show bitmap @1             -300  200  # bitmap number 5
+  draw on          # now show them
+  set $a 0         # once clicked, $a will be clicked-bitmap number
+  readmouse l @2 10000 range 1 4 # wait for left mouse click on rect 1-4 for 10sec
+  set $a under MOUSE_X MOUSE_Y # which stimulus was clicked?
+  clear 5          # erase the last bitmap from screen
+  if $a == 1       # if bitmap 1 was clicked, set variable newx to -175
+    set $newx -175
+  fi               # end of if statement
+  if $a == 2
+    set $newx -25
+  fi
+  if $a == 3
+    set $newx 125
+  fi
+  if $a == 4
+    set $newx 275
+  fi
+  if $a > 0 && STATUS != TIMEOUT
+    show bitmap @1 $newx 25 # show the same card (6) underneath the one clicked
+  fi
+  delay 500                # keep it for 500 ms
+  if STATUS == CORRECT     # if match was correct
+    sound good             # give vocal feedback
+    show bitmap correct $newx 100  # show message "correct", bitmap 7
+    clear -1
+    delay 200
+    show bitmap correct $newx 100  # show message "correct", bitmap 7
+  fi
+  if STATUS == WRONG       # if match was incorrect
+    sound wrong            # give vocal feedback
+    show bitmap error $newx 100    # show message "error", bitmap 7
+    delay 200
+    hide -1
+    delay 200
+    unhide -1
+  fi
+  if STATUS == TIMEOUT     # if match was incorrect
+    sound wrong            # give vocal feedback
+    show bitmap tooslow 75 100 # show message "timeout", bitmap 7
+    delay 200
+    clear -1
+    delay 200
+    show bitmap tooslow 75 100 # show message "error", bitmap 8
+  fi
+  delay 1000               # wait a second for feedback to be read/heard
+  clear 6 7                # clear feedback card (6) and feedback message (7)
+  ## determine what type of error this was
+  set $anyerror 0
+  set $nonperseverationerror 0
+  set $perseverationerror    0
+  if STATUS != CORRECT
+    set $anyerror 1
+    if $a == @3
+      set $perseverationerror 1
+    fi
+    if $a != @3
+      set $nonperseverationerror 1
+    fi
+  fi
+  save @1 @2 @3 @4 @5 @6 RT STATUS $a $anyerror $perseverationerror $nonperseverationerror
+
+block wcstblock # there is just one block. Name it "wcstblock"
+  message WCST_home # wcst_title
+  # pager instruction1 instruction2 instruction3
+  pager WCST_instructions_1 WCST_instructions_2 WCST_instructions_3
+  tasklist
+    # wcst 60 fixed # 60 trials, fixed follows order of table, is essential
+    # ----------
+    wcst 100 fixed
+  end
+  #  feedback
+  #    set &NumErrors   sum c12
+  #    set &PercErrors  perc ; select c12 == 1
+  #    set &NumPers     sum c13
+  #    set &PercPers    perc ; select c13 == 1
+  #    set &NumNonPers  sum c14
+  #    set &PercNonPers perc ; select c14 == 1
+  #    text color yellow
+  #    text align left
+  #    text -200 -200  "Feedback on your WCST performance"
+  #    text -200 -150  "(Note: There were in total 100 trials)"
+  #    text -200  -50  &NumErrors   ; prefix "Error count:  "
+  #    text  200  -50  &PercErrors  ; prefix "(" ; postfix "%)"
+  #    text -200    0  &NumPers     ; prefix "Perseveration error count:  "
+  #    text  200    0  &PercPers    ; prefix "(" ; postfix "%)"
+  #    text -200   50  &NumNonPers  ; prefix "Non-perseveration error count:  "
+  #    text  200   50  &PercNonPers ; prefix "(" ; postfix "%)"
+  #    text -200  200  "Press space bar to continue"
+  #  end

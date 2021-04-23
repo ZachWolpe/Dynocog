@@ -1,0 +1,16 @@
+# enter code
+
+options
+  bitmapdir stimuli
+
+bitmaps
+  welcome_page
+  overall_instructions
+  welcome_page_update
+
+
+block training
+  message welcome_page_update
+  # message welcome_page
+  message overall_instructions
+end

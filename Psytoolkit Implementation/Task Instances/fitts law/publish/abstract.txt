@@ -1,0 +1,10 @@
+Eye-hand coordination is the important and complex way we respond to
+objects we see. For example, if you want to grasp a coffee cup in
+front of you, you (unconsciously!) estimate the distance between your
+hand and the cup and make a movement. This seemingly trivial task has
+been studied in depth by psychologists interested in eye-hand
+coordination and motor control.
+
+The American psychologist Paul Fitts published about how difficult it
+is to move our hand towards an object in the 1950s and his
+mathematical description is known as Fitts’s Law.

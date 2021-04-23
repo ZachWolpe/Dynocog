@@ -1,0 +1,41 @@
+options
+  mouse on
+  bitmapdir stimuli
+  origin topleft
+
+bitmaps
+  Fitts_Law_home
+  Fitts_Law_afterwards   # afterwords
+  Fitts_law_instructions # instruction
+
+fonts
+  arial 20
+
+task fitts
+  set $x random 50 750                 # choose a random x position
+  set $y random 50 550                 # choose a random y position
+  set $w random 5 100                  # choose a random size
+  show rectangle 10 10 20 20 255 255 0 # show top left yellow rectangle
+  readmouse l 1 10000 range 1 1        # wait until user clicks yellow rectangle
+  clear 1                              # and erase the yellow rectangle
+  delay 300                            # wait a little bit
+  show rectangle $x $y $w $w 255 0 0   # show red target
+  readmouse 2 2000                     # measure how long it takes to move there
+  clear 2                              # erase the red target rectangle
+  delay 1000                           # intertrial interval of 1 second
+  set $distance expression sqrt ( $x * $x + $y * $y )
+  set $fittslaw expression log2 ( 2 * $distance / $w ) * 100.0
+  save $x $y $w $distance $fittslaw RT STATUS # save everything to data file
+
+block test
+  message Fitts_Law_afterwards  # Fitts_Law_home
+  message Fitts_law_instructions # instruction
+  tasklist
+    fitts 20
+  end
+  feedback
+    text 400 150 "Press space bar to continue"
+    xyplot c5 c6 ; select c7 == 1
+  end
+  # message Fitts_Law_afterwards # afterwords
+

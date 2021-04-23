@@ -1,0 +1,6 @@
+Run create.sh to create all stimuli.
+This works only unix systems.
+You need to have Inkscape installed.
+Do not forget to move all stimuli to the correct stimulus directory.
+That is all *.png files.
+

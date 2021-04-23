@@ -1,0 +1,3 @@
+This is a demonstration of the well-known n-back task. This is a test
+of short term memory. You need to remember previously seen letters and
+match them to the currently presented letter.

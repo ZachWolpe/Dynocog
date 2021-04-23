@@ -1,0 +1,1 @@
+The Corsi backward span test is a backward version of the regular Corsi Test. The test measures short term memory components.
