@@ -1,0 +1,20 @@
+
+
+Present:
+	Talk through ipython notebook: RL_wcst_001.ipynb
+
+
+Next Steps:
+
+	Psytoolkit
+		Finalize data structure
+
+	Python
+		Process Psytoolkit datastructure
+	Writeup
+		Start literature writeup
+		experimental design
+
+
+Problems to Raise:
+	Non-learnable problem
