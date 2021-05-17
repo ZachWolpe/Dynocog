@@ -1,0 +1,13 @@
+version: 3.3.0
+server-time: 2021-03-05-15-41
+user_agent: mozilla/5.0 (x11; linux x86_64) applewebkit/537.36 (khtml, like gecko) chrome/87.0.4280.66 safari/537.36
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0
+l: participant_code
+stime: 2021-03-05-15-41
+t: set
+a: 561804

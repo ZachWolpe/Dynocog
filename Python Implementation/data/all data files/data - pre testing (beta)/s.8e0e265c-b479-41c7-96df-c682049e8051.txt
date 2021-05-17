@@ -1,0 +1,21 @@
+version: 3.3.0
+server-time: 2021-03-02-14-28
+user_agent: mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/88.0.4324.190 safari/537.36
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0
+l: participant_code
+stime: 2021-03-02-14-28
+t: set
+a: 703840
+l: wcst_task
+stime: 2021-03-02-14-34
+T: 366293
+t: experiment
+l: fitts_law
+stime: 2021-03-02-14-35
+T: 82361
+t: experiment

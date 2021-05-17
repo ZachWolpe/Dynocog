@@ -1,0 +1,44 @@
+l: participant_code
+t: set
+- random 100000 999999
+
+l: Welcome_Screen
+t: experiment
+- {fullscreen} welcome_screen
+
+l: wcst_task
+t: experiment
+- {fullscreen} WCST_Task
+
+
+l: n_back_task
+t: experiment
+- {fullscreen} N_Back_Task
+
+
+l: corsi_block_span_task
+t: experiment
+- {fullscreen} Corsi_Block_Span_Task
+
+
+# l: backward_corsi
+# t: experiment
+# - {fullscreen} Backward_Corsi_Block_Span
+
+
+l: fitts_law
+t: experiment
+- {fullscreen} Fitts_Law
+
+
+l: navon_task
+t: experiment
+- {fullscreen} Navon_Task
+
+
+
+
+
+
+
+
