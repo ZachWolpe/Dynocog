@@ -1,0 +1,113 @@
+l: Welcome_Screen
+t: experiment
+- {fullscreen} welcome_screen
+
+
+l: participant_code
+t: set
+- random 100000 999999
+
+l: feedback
+t: info
+q: Your survey number to enter in the MTurk webpage is {$participant_code}.
+
+
+
+# ------- Demographics --------x
+
+l: age
+t: textline
+q: Age
+- {min=18,max=100} 
+Enter your age:
+
+
+l: gender
+t: radio
+q: Gender
+- male
+- female
+- other
+- prefer not to say
+
+
+l: handedness
+t: radio
+q: Handedness
+- right
+- left
+- ambidextrous
+
+
+l: education
+t: radio
+q: What is your highest level of education?
+- primary school
+- high school
+- university
+- graduate school
+
+
+l: income
+t: range
+q: Compared with the average, what is your income on a scale from 1 to 10 with 5 being average?
+- {min=1,max=10,left=low,right=high,start=5}
+
+
+
+l: computer_hours
+t: range
+q: How many hours do you spend playing computer games (per week)
+- {min=0,max=100,left=low,right=high,start=0}
+
+
+
+
+# ------- Demographics --------x
+
+
+
+
+# ------- Tasks --------x
+
+
+l: wcst_task
+t: experiment
+- {fullscreen} WCST_Task
+
+
+l: n_back_task
+t: experiment
+- {fullscreen} N_Back_Task
+
+
+l: corsi_block_span_task
+t: experiment
+- {fullscreen} Corsi_Block_Span_Task
+
+
+# l: backward_corsi
+# t: experiment
+# - {fullscreen} Backward_Corsi_Block_Span
+
+
+l: fitts_law
+t: experiment
+- {fullscreen} Fitts_Law
+
+
+l: navon_task
+t: experiment
+- {fullscreen} Navon_Task
+
+
+# ------- Tasks --------x
+
+
+
+
+
+
+
+
+

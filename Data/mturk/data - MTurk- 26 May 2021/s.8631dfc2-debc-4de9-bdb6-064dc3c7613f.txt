@@ -1,0 +1,27 @@
+version: 3.3.2
+server-time: 2021-05-20-16-38
+user_agent: mozilla/5.0 (macintosh; intel mac os x 10_15_7) applewebkit/537.36 (khtml, like gecko) chrome/90.0.4430.212 safari/537.36
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0
+l: participant_code
+stime: 2021-05-20-16-38
+t: set
+a: 479017
+l: Welcome_Screen
+stime: 2021-05-20-16-38
+T: 1621521528547
+t: experiment
+l: age
+stime: 2021-05-20-16-38
+T: 3913
+t: textline
+a: 22
+l: gender
+stime: 2021-05-20-16-38
+T: 2964
+t: radio
+a: 4
