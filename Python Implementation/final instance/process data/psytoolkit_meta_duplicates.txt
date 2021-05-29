@@ -1,0 +1,25 @@
+
+['s.fa4db0c5-9f83-4b95-99fe-c1deac6c8f51.txt',
+'s.1d3e44f1-fc9d-45e9-a6ed-281a185de9f4.txt',
+'s.02ed373d-a90d-4d7a-b514-e1ea7058050f.txt',
+'s.ec17de4c-dba8-43cb-a976-65d60ecaed34.txt', 
+'s.5b4243d4-bba7-4c58-83fb-d89eabf1cce9.txt',
+'s.ba2379bc-c2a7-49c9-99b8-d42dc16bbf0f.txt',
+'s.1a8143b8-4fd5-46bd-a6da-ded91747d2ee.txt',
+'s.6c4dd415-504a-41b6-bab9-68ad608559a6.txt',
+'s.85db91dc-d458-442b-8710-d7d969dade5c.txt',
+'s.3368df8c-82ba-40e0-8294-cb2ef5a701cf.txt',
+'s.12af3547-904a-4996-87aa-afb8876bcda4.txt',
+'s.869cf73d-7806-424e-b6cb-d25fb465870a.txt',
+'s.a7bde7bc-cdff-43c3-a47a-ea73f388a7e7.txt',
+'s.92fa2ce2-bdd2-4c7a-aff0-54bca900a9ba.txt',
+'s.0bd9c1b0-7b4e-4feb-8bd6-d43db52aa12e.txt',
+'s.e7f8ba8c-de8e-4c25-a270-7b27aa1ebd1c.txt',
+'s.cabf674f-8466-4259-8b56-199e6876ea7e.txt',
+'s.b76ccfb1-1ce2-45a9-ac69-334fa3b61b4a.txt',
+'s.3fe508ca-8717-4e41-9647-1ed874742a72.txt',
+'s.9e37a05f-5a32-4762-bb62-a276e6f175ce.txt'
+]
+
+# These candidate individuals had some (psytoolkit generated) error in their metadata which had to be removed.
+# Mostly immaterial, duplication of some fields, however it may be indicative of some broader issue & thus this information should not be lost.

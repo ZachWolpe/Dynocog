@@ -17,10 +17,6 @@ t: set
 a: 355131
 l: feedback
 stime: 2021-05-25-17-52
-T: 7677
-t: info
-l: feedback
-stime: 2021-05-25-17-52
 T: 7852
 t: info
 l: age
@@ -28,11 +24,6 @@ stime: 2021-05-25-17-52
 T: 5147
 t: textline
 a: 32
-l: gender
-stime: 2021-05-25-17-52
-T: 2441
-t: radio
-a: 2
 l: gender
 stime: 2021-05-25-17-52
 T: 2586
@@ -43,11 +34,6 @@ stime: 2021-05-25-17-52
 T: 8159
 t: radio
 a: 1
-l: education
-stime: 2021-05-25-17-52
-T: 2844
-t: radio
-a: 4
 l: education
 stime: 2021-05-25-17-52
 T: 2956

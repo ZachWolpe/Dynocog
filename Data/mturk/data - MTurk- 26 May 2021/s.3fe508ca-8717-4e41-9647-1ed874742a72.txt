@@ -73,9 +73,3 @@ T: 1621954862281
 t: experiment
 endcode: 
 end 2021-05-25-17-01
-l: navon_task
-stime: 2021-05-25-17-02
-T: 1621954862281
-t: experiment
-endcode: 
-end 2021-05-25-17-02

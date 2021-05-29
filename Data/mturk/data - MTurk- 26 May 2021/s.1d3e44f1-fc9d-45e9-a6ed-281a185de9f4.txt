@@ -9,14 +9,6 @@ user_time: 0
 T: 0
 l: Welcome_Screen
 stime: 2021-05-25-15-54
-T: 1621950867289
-t: experiment
-l: participant_code
-stime: 2021-05-25-15-54
-t: set
-a: 391849
-l: Welcome_Screen
-stime: 2021-05-25-15-54
 T: 1621950882368
 t: experiment
 l: participant_code

@@ -46,12 +46,6 @@ t: range
 a: 7
 s: 7
 l: computer_hours
-stime: 2021-05-25-16-01
-T: 8918
-t: range
-a: 35
-s: 35
-l: computer_hours
 stime: 2021-05-25-16-04
 T: 8918
 t: range
