@@ -1,0 +1,17 @@
+version: 3.3.0
+server-time: 2021-05-25-16-26
+user_agent: mozilla/5.0 (windows nt 6.1; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/73.0.3683.86 safari/537.36
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0
+l: Welcome_Screen
+stime: 2021-05-25-16-26
+T: 1621952765378
+t: experiment
+l: participant_code
+stime: 2021-05-25-16-26
+t: set
+a: 152368

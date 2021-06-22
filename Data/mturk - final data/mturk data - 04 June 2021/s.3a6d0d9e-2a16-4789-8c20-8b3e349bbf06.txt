@@ -1,0 +1,9 @@
+version: 3.3.0
+server-time: 2021-05-29-23-28
+user_agent: mozilla/5.0 (macintosh; intel mac os x 10_15_6) applewebkit/605.1.15 (khtml, like gecko) version/14.0.3 safari/605.1.15
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0

@@ -1,0 +1,9 @@
+version: 3.3.0
+server-time: 2021-05-25-15-57
+user_agent: mozilla/5.0 (linux; android 10; sm-g965u) applewebkit/537.36 (khtml, like gecko) chrome/90.0.4430.210 mobile safari/537.36
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0

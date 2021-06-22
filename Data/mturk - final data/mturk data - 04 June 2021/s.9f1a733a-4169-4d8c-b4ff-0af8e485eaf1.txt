@@ -1,0 +1,17 @@
+version: 3.3.0
+server-time: 2021-05-29-22-41
+user_agent: mozilla/5.0 (windows nt 10.0; win64; x64; rv:88.0) gecko/20100101 firefox/88.0
+screen_width: 0
+screen_height: 0
+html_width: 0
+html_height: 0
+user_time: 0
+T: 0
+l: Welcome_Screen
+stime: 2021-05-29-22-41
+T: 1622320897328
+t: experiment
+l: participant_code
+stime: 2021-05-29-22-41
+t: set
+a: 217646
