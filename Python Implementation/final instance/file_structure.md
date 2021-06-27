@@ -9,6 +9,7 @@ A brief description of the file structures used, to allow the user to efficientl
 ### model-free analysis 
 
 ### process data
+
   - *process_raw_data.ipynb*: read in raw _.txt_ files, process the data & store the _batch\_processing\_data_ instance.
   
 - **process_raw_data.ipynb**: read in raw _.txt_ files, process the data & store the _batch\_processing\_data_ instance.
