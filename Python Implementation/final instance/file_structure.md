@@ -10,4 +10,4 @@ A brief description of the file structures used, to allow the user to efficientl
 
 ### process data
   - **process_raw_data.ipynb**: read in raw _.txt_ files, process the data & store the _batch\_processing\_data_ instance.
-  - **clean_processed_data.ipynb** read, clean & store the data instance,
+  - **clean_processed_data.ipynb** read, clean & store the data instance.
