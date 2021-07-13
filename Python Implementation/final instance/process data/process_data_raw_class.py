@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('seaborn-darkgrid')
 import pandas as pd
 import pickle
 import os
@@ -60,6 +61,8 @@ class batch_processing:
 
         """
         print(message)
+        
+
     
     def cache_metadata(self, metadata_path):
         """Store any metadata"""
@@ -68,26 +71,40 @@ class batch_processing:
         print('     Metadata saved!     ')
         print('')
 
-
     def create_participant_data(self):
         individual_paths = [self.path + p for p in self.participants]
-        df = pd.DataFrame({'participant':[],'participant_file':[],
-        'version':[],'server-time':[], 'user_agent':[], 'screen_width':[], 'screen_height':[], 'html_width':[], 'html_height':[], 'user_time':[], 'T':[], 
-        'Welcome_Screen':[],'Welcome_Screen_stime':[],'Welcome_Screen_T':[],'Welcome_Screen_t':[],'participant_code':[],'participant_code_stime':[],'participant_code_t':[],
-        'participant_code_a':[],'feedback':[],'feedback_stime':[],'feedback_T':[],'feedback_t':[],'age':[],'age_stime':[],'age_T':[],'age_t':[],'age_a':[],'gender':[],
-        'gender_stime':[],'gender_T':[],'gender_t':[],'gender_a':[],'handedness':[],'handedness_stime':[],'handedness_T':[],'handedness_t':[],'handedness_a':[],'education':[],
-        'education_stime':[],'education_T':[],'education_t':[],'education_a':[],'income':[],'income_stime':[],'income_T':[],'income_t':[],'income_a':[],'income_s':[],
-        'computer_hours':[],'computer_hours_stime':[],'computer_hours_T':[],'computer_hours_t':[],'computer_hours_a':[],'computer_hours_s':[],'wcst_task':[],'wcst_task_stime':[],
-        'wcst_task_T':[],'wcst_task_t':[],'n_back_task':[],'n_back_task_stime':[],'n_back_task_T':[],'n_back_task_t':[],'corsi_block_span_task':[],'corsi_block_span_task_stime':[],
-        'corsi_block_span_task_T':[],'corsi_block_span_task_t':[],'fitts_law':[],'fitts_law_stime':[],'fitts_law_T':[],'fitts_law_t':[],'navon_task_law':[],'navon_task_stime':[],
-        'navon_task_T':[],'navon_task_t':[],'endcode':[],'end':[]
+        df = pd.DataFrame({
+            'participant':[],'participant_file':[], 'participant_code':[],
+            'version':[],'server-time':[], 'user_agent':[], 'screen_width':[], 'screen_height':[], 'html_width':[], 'html_height':[], 
+            'user_time':[], 'user_time_T':[], 
+            'Welcome_Screen':[],'Welcome_Screen_stime':[],'Welcome_Screen_T':[],'Welcome_Screen_t':[],
+            'participant_code':[],'participant_code_stime':[],'participant_code_t':[], 'participant_code_a':[],
+            'feedback':[],'feedback_stime':[],'feedback_T':[],'feedback_t':[],
+            'age':[],'age_stime':[],'age_T':[],'age_t':[],'age_a':[],
+            'gender':[], 'gender_stime':[],'gender_T':[],'gender_t':[],'gender_a':[],
+            'handedness':[],'handedness_stime':[],'handedness_T':[],'handedness_t':[],'handedness_a':[],
+            'education':[], 'education_stime':[],'education_T':[],'education_t':[],'education_a':[],
+            'income':[],'income_stime':[],'income_T':[],'income_t':[],'income_a':[],'income_s':[], 
+            'computer_hours':[],'computer_hours_stime':[],'computer_hours_T':[],'computer_hours_t':[],'computer_hours_a':[],'computer_hours_s':[], 
+            'wcst_task':[],'wcst_task_stime':[], 'wcst_task_T':[],'wcst_task_t':[], 
+            'n_back_task':[],'n_back_task_stime':[],'n_back_task_T':[],'n_back_task_t':[],
+            'corsi_block_span_task':[],'corsi_block_span_task_stime':[], 'corsi_block_span_task_T':[],'corsi_block_span_task_t':[],
+            'fitts_law':[],'fitts_law_stime':[],'fitts_law_T':[],'fitts_law_t':[],
+            'navon_task_law':[],'navon_task_stime':[], 'navon_task_T':[],'navon_task_t':[],
+            'endcode':[],'end':[]
         })
-        for p in range(self.n):
+
+        # trick to structure data 
+        meta_cols = [
+            'version', 'server-time', 'user_agent', 'screen_width', 'screen_height', 'html_width', 'html_height', 'user_time', 'Welcome_Screen',
+            'participant_code', 'feedback','age', 'gender', 'handedness', 'education', 'income', 'computer_hours', 'wcst_task', 'n_back_task', 
+            'corsi_block_span_task', 'fitts_law', 'navon_task', 'endcode', 'end']
+
+        for p in range(self.n):        
             # _____ FOR EACH PARTICIPANT -----x
             pc = self.parti_code[p]
             pt = self.participants[p]
 
-            # ---- FOR EACH PARTICIPANT -----x
             f = open(individual_paths[p], 'r')
             # core dictionary
             dt  = {
@@ -95,23 +112,36 @@ class batch_processing:
                     'participant_file':         pt,
                 }
             c = 0
+            prefix = ''
             for l in f.readlines():
                 # ----- For each line ----x
                 st  = l.split(' ')
-                dtt  = {heads[c]: st[1].split('\n')[0]}
+
+                # identify prefix (from 'meta_cols')
+                x = [meta_cols[i] for i in np.where([m in l for m in meta_cols])[0]]
+                if len(x) > 0: 
+                    prefix = x[0]
+                    dtt  = {prefix: st[1].split('\n')[0]}
+                
+
+                else:
+                    dtt  = {prefix + '_' + st[0].split(':')[0]: st[1].split('\n')[0]}
                 dt.update(dtt)
                 c = c+1
             df = df.append(dt, ignore_index=True)[df.keys()]
-        f.close()
+            f.close()
         message = """
 
         ------------------------------------------------------------------
-                              Individual data created
+                                Individual data created
         ------------------------------------------------------------------
 
         """
         print(message)
         self.individual_data = df
+
+
+
 
     
     def mturk_completion_rates(self):
@@ -154,7 +184,7 @@ class batch_processing:
         plt_data = sub.sum().to_frame().transpose()
         plt_data.columns = [t.replace('_stime', '') for t in  plt_data.columns]
         plt_data.columns = [x + ': ' + str(y) for x,y in zip(plt_data.columns, plt_data.values[0])]
-        plt_data.plot.bar().set_ylim(200,250)
+        plt_data.plot.bar().set_ylim(200,300)
         plt.title('Number of Tasks Started')
         plt.xticks([])
         plt.show()
