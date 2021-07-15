@@ -277,43 +277,45 @@ class batch_processing:
 
 
     def create_nback_data(self):
-        df = pd.DataFrame()
-        for p in range(self.n):
-            # ----- check path validity -----x
-            if os.path.exists(self.nback_paths[p]):
-                # _____ FOR EACH PARTICIPANT -----x
-                pc = self.parti_code[p]
-                pt = self.participants[p]
+            df = pd.DataFrame()
+            for p in range(self.n):
+                # ----- check path validity -----x
+                if os.path.exists(self.nback_paths[p]):
+                    # _____ FOR EACH PARTICIPANT -----x
+                    pc = self.parti_code[p]
+                    pt = self.participants[p]
 
-                # _____ FOR EACH PARTICIPANT -----x
-                f = open(self.nback_paths[p], 'r')
-                for l in f.readlines():
-                    st  = l.split(' ')
-                    dt  = {
-                        'participant':              pc,
-                        'participant_code':         pt,
-                        'block_number':             st[0],
-                        'score':                    st[1],
-                        'status':                   st[2],
-                        'miss':                     st[3],
-                        'false_alarm':              st[4],
-                        'reaction_time_ms':         st[5],
-                        'match':                    st[6],
-                        'stimuli':                  st[7],
-                        'stimuli_n_1':              st[8],
-                        'stimuli_n_2':              st[9].split('\n')[0],
-                    }
-                    df = df.append(dt, ignore_index=True)[dt.keys()]
-                f.close()
-        message = """
+                    # _____ FOR EACH PARTICIPANT -----x
+                    f = open(self.nback_paths[p], 'r')
+                    for l in f.readlines():
+                        st  = l.split(' ')
+                        dt  = {
+                            'participant':              pc,
+                            'participant_code':         pt,
+                            'block_number':             st[0],
+                            'trial_counter':            st[1],
+                            'score':                    st[2],
+                            'status':                   st[3],
+                            'miss':                     st[4],
+                            'false_alarm':              st[5],
+                            'unknown':                  st[6],
+                            'reaction_time_ms':         st[7],
+                            'match':                    st[8],
+                            'stimuli':                  st[9],
+                            'stimuli_n_1':              st[10],
+                            'stimuli_n_2':              st[11].split('\n')[0],
+                        }
+                        df = df.append(dt, ignore_index=True)[dt.keys()]
+                    f.close()
+            message = """
 
-        ------------------------------------------------------------------
-                                N back data created
-        ------------------------------------------------------------------
+            ------------------------------------------------------------------
+                                    N back data created
+            ------------------------------------------------------------------
 
-        """
-        print(message)
-        self.nback_data = df
+            """
+            print(message)
+            self.nback_data = df
 
 
     def create_corsi_data(self):
