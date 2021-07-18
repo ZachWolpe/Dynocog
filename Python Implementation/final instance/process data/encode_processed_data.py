@@ -112,7 +112,13 @@ class encode_data:
         df['education_a'][df['education_a'] == 3] = 'university'
         df['education_a'][df['education_a'] == 4] = 'graduate school'
 
-        self.demographics = df
+        self.demographics_plot = df
+        # --- demographics dataset: clean ---x
+        df2 = df[['participant', 'age_a','gender_a','handedness_a','education_a', 'income_a', 'computer_hours_a','age_group']]
+        df2_times = df[['participant', 'feedback_T', 'age_T', 'gender_T','handedness_T', 'education_T', 'income_T', 'computer_hours_T']]
+        df2_times['mean_reation_time_ms'] = df2_times.iloc[:,1:].mean(axis=1)
+        df2_times = df2_times[['participant', 'mean_reation_time_ms']].set_index('participant')
+        self.demographics = df2.set_index('participant').join(df2_times).reset_index()
         # ------- Demographics Encoding --------x
 
     
@@ -154,11 +160,107 @@ class encode_data:
             self.plot_corsi             : plot
             self.plot_navon             : plot
             self.write_class_to_pickle  : function
+            self.describe_data          : info
+            self.clean_data_info        : info
             
         ------------------------------------------------------------------
 
         """
         print(message)
+
+    def clean_data_info(self):
+        """Describe the details of the summary datasets"""
+        message = """
+
+            ===========================================================================================================================
+                WCST - Wisconsin Card Sorting Task                                                  DataFrame: ed.raw.wcst_date
+            ---------------------------------------------------------------------------------------------------------------------------
+            
+                participant                     : key               : participant ID
+                card_no                         : categorical       : the card shown
+                correct_card                    : categorical       : the card that should be clicked of the top four on screen      
+                correct_persevering             : categorical       : the card that would be clicked if the participant is persevering
+                seq_no                          : numeric           : trial number
+                rule                            : categorical       : matching rule  
+                card_shape                      : categorical       : current card shape
+                card_number                     : categorical       : current card number
+                card_colour                     : categorical       : current card colour
+                reaction_time_ms                : numeric           : reaction time (ms)
+                status                          : categorical       : 1=correct, 2=wrong card, 3=too slow
+                card_selected                   : categorical       : card chosen
+                error                           : binary            : 1=error, 0=no error
+                perseverance_error              : binary            : 1=perserverance error,       0=otherwise
+                not_perseverance_error          : binary            : 1=not a perseveration error, 0=otherwise
+
+            ---------------------------------------------------------------------------------------------------------------------------    
+                Demographic                                                                         DataFrame: ed.demographics
+            ---------------------------------------------------------------------------------------------------------------------------
+
+                participant                     : key 
+                age_a                           : numeric
+                gender_a                        : categorical 
+                handedness_a                    : categorical
+                education_a                     : categorical
+                income_a                        : categorical 
+                computer_hours_a                : numeric
+                age_group                       : categorical
+                mean_reation_time_ms.           : numeric
+
+            ---------------------------------------------------------------------------------------------------------------------------    
+                N-Back                                                                              DataFrame: ed.nback_summary_stats
+            ---------------------------------------------------------------------------------------------------------------------------
+
+                participant                     : key 
+                block_number                    : numeric       : trial block number 
+                trial_counter   - count         : numeric       : number of trials in the block 
+                score           - mean          : probability   : score of current trail (1=correct, 0=wrong)
+                                - std           : probability       
+                status          - mean          : probability   : whether the response given was a correct match (1=correct, 0=wrong)
+                                - std           : probability   
+                miss            - mean          : probability   : whether the response given was a miss (1=miss, 0=otherwise)
+                                - std           : probability     
+                false_alarm     - mean          : probability   : 1=participant clicked but there was no-match, 0=otherwise
+                                - std           : probability    
+                reaction_time_ms- mean          : numeric       
+                                - std           : numeric  
+
+            ---------------------------------------------------------------------------------------------------------------------------    
+                Navon                                                                              DataFrame: ed.nback_summary_stats
+            ---------------------------------------------------------------------------------------------------------------------------
+
+                participant                     : key 
+                level_of_target                 : categorical   : type of signal (global/local/none)
+                correct         - mean          : probability   : correct action
+                                - std           : probability
+                too_slow        - mean          : probability   : acted too slow
+                                - std           : probability
+                reaction_time_ms- mean
+                                - std
+
+            ---------------------------------------------------------------------------------------------------------------------------    
+                Corsi Block Span                                                                    DataFrame: ed.corsi_summary_stats
+            ---------------------------------------------------------------------------------------------------------------------------
+
+                participant                     : key 
+                highest_span    - max           : numeric       : highest corsi block span
+                n_items         - max           : numeric       : (max) number of items to be remembered
+                status          - mean          : probability   : current trial (1=correct, 0=wrong)
+                                - std           : probability 
+
+            ---------------------------------------------------------------------------------------------------------------------------    
+                Fitts Law                                                                          DataFrame: ed.fitts_summary_stats
+            ---------------------------------------------------------------------------------------------------------------------------
+
+                participant                     : key 
+                delta           - mean          : numeric       : average deviation in expects (fitts law) performance
+                                - std           : numeric       : std dev in expected (fitts law) performance
+                status          - mean          : numeric       : status (1=correct, 2=error, 3=too slow)
+                                - std           : numeric     
+                                
+            ===========================================================================================================================
+        """
+        print(message)
+
 
 
     def plot_random_fitts(self, all=False, color='lightblue'):
@@ -204,7 +306,7 @@ class encode_data:
         fig.show()
         
     def distributional_plots(self, continuous_var, cat_var, categories, labels, colors, xlab, ylab, title, df=None):
-        if not df: df=self.demographics
+        if not df: df=self.demographics_plot
         fig = go.Figure()
         for c in range(len(categories)):
             fig.add_trace(go.Histogram(
