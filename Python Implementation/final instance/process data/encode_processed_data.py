@@ -225,7 +225,7 @@ class encode_data:
                                 - std           : numeric  
 
             ---------------------------------------------------------------------------------------------------------------------------    
-                Navon                                                                              DataFrame: ed.nback_summary_stats
+                Navon                                                                              DataFrame: ed.navon_summary_stats
             ---------------------------------------------------------------------------------------------------------------------------
 
                 participant                     : key 
@@ -254,7 +254,7 @@ class encode_data:
                 participant                     : key 
                 delta           - mean          : numeric       : average deviation in expects (fitts law) performance
                                 - std           : numeric       : std dev in expected (fitts law) performance
-                status          - mean          : numeric       : status (1=correct, 2=error, 3=too slow)
+                status          - mean          : categorical   : status (1=correct, 2=error, 3=too slow)
                                 - std           : numeric     
                                 
             ===========================================================================================================================
