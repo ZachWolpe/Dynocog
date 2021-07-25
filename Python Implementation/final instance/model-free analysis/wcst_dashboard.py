@@ -20,11 +20,12 @@ from encode_processed_data import encode_data
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 
 
-app = dash.Dash()
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
     
 np.random.seed(42)
 random_x = np.random.randint(1,101,1000)
@@ -47,7 +48,7 @@ demographic_cont_vars = [
 ]
 
 demo_pie_map = {
-    'gender_a':     {'dummy_var':'gender_a',        'labels':['male', 'female'],                                'colors':['steelblue', 'darkred'],                                          'title':'Gender Distribution',     'name':'gender'},
+    'gender_a':     {'dummy_var':'gender_a',        'labels':['male', 'female', 'other'],                       'colors':['steelblue', 'darkred', 'cyan'],                                          'title':'Gender Distribution',     'name':'gender'},
     'education_a':  {'dummy_var':'education_a',     'labels':['university', 'graduate school', 'high school'],  'colors':['rgb(177, 127, 38)', 'rgb(129, 180, 179)', 'rgb(205, 152, 36)'],  'title':'Education Distribution',   'name':'education'},
     'handedness_a': {'dummy_var':'handedness_a',    'labels':['right', 'left', 'ambidextrous'],                 'colors':px.colors.sequential.RdBu,                                         'title':'Handedness Distribution',  'name':'handedness'},
     'age_group':    {'dummy_var':'age_group',       'labels':np.unique(ed.demographics[['age_group']]).tolist(),'colors':px.colors.sequential.GnBu,                                         'title':'Age Distribution',         'name':'age'}
@@ -66,6 +67,7 @@ def pie_chart(dummy_var, labels, colors, title, df=ed.demographics):
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
     fig.update_traces(textfont_size=15, marker=dict(colors=colors, line=dict(color='white', width=0)))
     fig.update(layout_title_text=title)
+    fig.update_layout(showlegend=False)
     return fig
 
 def distributional_plots(group_var, continuous_var, xlab, ylab, title, df=ed.demographics):
@@ -93,24 +95,34 @@ def distributional_plots(group_var, continuous_var, xlab, ylab, title, df=ed.dem
 # ============================================== Demographics ==============================================
 
 
-app.layout = html.Div([
-    html.Div('Demographics of Participants', style={'color': '#555555', 'fontSize': 25}),
-    html.Div('Grouping Variable', style={'color': '#555555', 'fontSize': 18, 'margin':'10px'}),
+app.layout = dbc.Container([
+    html.Div('Demographics of Participants', style={'color': '#555555', 'fontSize': 25, 'margin-top':'10px'}),
+    html.Div('Grouping Variable', style={'color': '#555555', 'fontSize': 15, 'margin':'10px'}),
     dcc.Dropdown(
         id='demographic_categorical_var',
         options=demographic_groups,
         value='gender_a'
     ),
-    html.Div('Continuous Variable', style={'color': '#555555', 'fontSize': 18, 'margin':'10px'}),
+    html.Div('Continuous Variable', style={'color': '#555555', 'fontSize': 15, 'margin':'10px'}),
     dcc.Dropdown(
         id='demographic_continuous_var',
         options=demographic_cont_vars,
         value='age_a'
     ),
-    html.Div([
-        dcc.Graph(id='demographic_plot_1'),
-        dcc.Graph(id='demographic_plot_2')
-    ], style={'columnCount': 2})
+ 
+  
+    dbc.Row([
+        dbc.Col(dcc.Graph(id='demographic_plot_1'), width=4),
+        dbc.Col(dcc.Graph(id='demographic_plot_2'))
+        
+    ])
+
+    
+   ,
+    # html.Div([
+    #     dcc.Graph(id='demographic_plot_1', stwidth=4yle={'width': '90%', 'height': '9%'}),
+    #     dcc.Graph(id='demographic_plot_2')
+    # ], #style={'columnCount': 2})
     
     ]
     )
