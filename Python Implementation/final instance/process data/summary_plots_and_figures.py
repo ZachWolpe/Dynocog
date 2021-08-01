@@ -20,6 +20,7 @@ from plotly.colors import n_colors
 class summary_plots_and_figures:
     def __init__(self, ed):
         self.ed = ed
+        self.wcst_performance = None
 
         # ============================================== Summary Table Data ==============================================
         self.continuous_vars = [
@@ -43,6 +44,12 @@ class summary_plots_and_figures:
             {'label': 'Handedness',             'value': 'demographics_handedness_a'},
             {'label': 'Age',                    'value': 'demographics_age_group'},
             {'label': 'Navon Level',            'value': 'navon_level_of_target'},
+            {'label': 'Nback',                  'value': 'nback_group'},
+            {'label': 'Fitts',                  'value': 'fitts_group'},
+            {'label': 'Corsi',                  'value': 'corsi_group'},
+            {'label': 'Navon',                  'value': 'navon_group'},
+            {'label': 'WCST',                   'value': 'wcst_group'},
+            {'label': 'Random Particpants',     'value': 'random_participants'},
             {'label': 'None',                   'value': ''}
         ]
         # ============================================== Summary Table Data ==============================================
@@ -87,27 +94,249 @@ class summary_plots_and_figures:
             """
         print(message)
 
+    def create_performance_groupings(self, n_steps=10):
+        """Compute Performance Bins (per task)"""
+        aa = ['nback_group', 'fitts_group','corsi_group','navon_group','wcst_group']
+        bb = ['nback_status', 'fitts_mean_deviation', 'corsi_block_span', 'navon_perc_correct', 'wcst_accuracy']
+        spd=self.ed.summary_table
+
+        for a, b in zip(aa, bb):
+            # ---- groups
+            srt=min(spd[b]); stp=max(spd[b]); 
+            steps = np.linspace(start=srt, stop=stp, num=n_steps)
+            grps  = [str(np.round(steps[i],2)) + '-' + str(np.round(steps[i+1],2)) for i in range(len(steps)-1)]
+
+            spd[a] = 'Na'
+            for s in range(n_steps-1):
+                spd.loc[(spd[b]>steps[s]) & (spd[b]<=steps[s+1]),a] = grps[s]
+        self.ed.summary_table = spd
 
 
-    def scatter_plot(self, data, xvar, yvar, group_var=False, xlab='', ylab='', title='', cols=px.colors.qualitative.Pastel):
+
+    def compute_wcst_performance_trial_bins(self, n_bins=10):
+        """Return: DataFrame capturing the performance per n_bins trials"""
+        wcst_data=self.ed.raw.wcst_data
+
+        # ---- add trial number ----x
+        xx = []; df = wcst_data
+        [xx.append((i%100)+1) for i in range(df.shape[0])]
+        df['trial_no'] = xx 
+
+        # ---- status==1 --> correct
+        t = np.linspace(0,100,num=n_bins+1).tolist(); c=0
+
+        for tt in t[1:]:
+            c +=1
+            x = df.loc[df['trial_no'] < tt,].groupby(['participant', 'status']).agg({
+            'participant':              ['count'],
+            'reaction_time_ms':         ['mean', 'std'],
+            'perseverance_error':       ['mean'],
+            'not_perseverance_error':   ['mean']
+            }).reset_index()
+            x['percentages'] = x[('participant', 'count')]/tt
+            x['trials']      = str(round(t[c-1])) + '-' + str(round(t[c]))
+            x['trials_2']    = t[c]
+            if c==1:    data=x
+            else:       data=data.append(other=x)
+
+        # if x>0 --> perseverance_error > not_perseverance_error --> main error=perseverance_error
+        data['main_error'] = np.where(data['perseverance_error'] - data['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
+        self.wcst_performance = data
+    
+    #---- random sample of n participants ----x
+    def random_participants_sample(self, n=10):
+        spd=self.ed.summary_table
+        participants = np.random.choice(spd.index.unique(), n)
+        participants
+        spd['random_participants'] = 'other'
+        for p in participants:
+            spd.loc[spd.index==p, 'random_participants'] = p
+
+        self.ed.summary_table = spd
+
+
+    def wcst_performance_plot_deprecated(self, 
+        group='corsi_group', 
+        mean_plot=False,
+        colours=px.colors.sequential.Plasma,
+        title='WCST Performance', 
+        xaxis={'title':'trials'}, 
+        yaxis={'title':'% Correct'}, 
+        template='none', 
+        legend_title_text='', width=900, height=500):
+
+        # ---- fetch data ----x
+        summary_data=self.ed.summary_table.copy()
+        wcst_performance_data=self.wcst_performance.copy()
+
+        # --- join data + compute performance per group ---x
+        x = wcst_performance_data.set_index(('participant',''))
+        x = x.loc[x['status']==1,:] #???
+        data = x.join(summary_data)
+
+        
+        def compute_performance_per_group(data, group):
+            x = data.groupby([group, ('trials_2', '')]).agg({
+                ('percentages','')          :'mean', 
+                ('reaction_time_ms','mean') :'mean'
+            }).reset_index()
+            x.columns = [xx[0] for xx in x.columns]
+            return x
+        if not group:
+                data['all'] = 'all data' 
+                group = 'all'
+        data = compute_performance_per_group(data=data, group=group)
+
+
+        # ---------- plots ----------x
+        if not legend_title_text: legend_title_text = group
+        groups = data[group].unique()
+        traces = []
+        c=-1
+        for g in groups:
+            c+=1
+            if g != 'Na' and g != 'other':
+                df    = data.loc[(data[group] == g), ['trials_2', 'percentages', 'reaction_time_ms']]
+                trace = go.Scatter(x=df.trials_2, y=df.percentages, mode='lines+markers', name='{}'.format(g),
+                        line=dict(color='black'), 
+                        marker=dict(
+                            size=df['reaction_time_ms']/100,
+                            color=colours[c],
+                            opacity=0.75,
+                            line=dict(color='white')))
+                traces.append(trace)
+        
+        if mean_plot:
+            df = data.groupby('trials_2').agg({
+                'reaction_time_ms': ['mean', 'std'],
+                'percentages':      ['mean', 'std']}).reset_index()
+            g  = 'aggregate'
+            # df['participant'] = g
+            trace = go.Scatter(x=df.trials_2, y=df[('percentages','mean')], mode='lines+markers', name='{}'.format(g),
+                    line=dict(color='black'), 
+                    marker=dict(
+                        size=df[('reaction_time_ms','mean')]/100,
+                        color=colours[-1],
+                        opacity=0.75,
+                        line=dict(color='white')))
+            traces.append(trace)
+
+
+        layout  = go.Layout(title=title, xaxis=xaxis, yaxis=yaxis, template=template, legend_title_text=legend_title_text, width=width, height=height)
+        fig     = go.Figure(data=traces, layout=layout)
+        return {'figure': fig, 'data':data}
+
+
+    def wcst_performance_plot(
+        self, group='corsi_group', 
+        mean_plot=False,
+        colours=px.colors.sequential.Plasma,
+        title='WCST Performance', 
+        xaxis={'title':'trials'}, 
+        yaxis={'title':'% Correct'}, 
+        template='none', 
+        legend_title_text='', width=900, height=500):
+
+        # ---- fetch data ----x
+        summary_data=self.ed.summary_table.copy()
+        wcst_performance_data=self.wcst_performance.copy()
+
+        # --- join data + compute performance per group ---x
+        x = wcst_performance_data.set_index(('participant',''))
+        x = x.loc[x['status']==1,:] #???
+        data = x.join(summary_data)
+
+        # # ---- reset column names ----x
+        cols = []
+        for c in data.columns:
+                if type(c) is tuple: cols.append('_'.join(c).strip('_'))
+                else: cols.append(c)
+        data.columns = cols
+        
+        def compute_performance_per_group(data, group):
+            x = data.groupby([group, 'trials_2']).agg({
+                'percentages'           :'mean', 
+                'reaction_time_ms_mean' :'mean'
+                }).reset_index()
+            # x.columns = [xx[0] for xx in x.columns]
+            return x
+        if not group:
+                data['all'] = 'all data' 
+                group = 'all'
+        data = compute_performance_per_group(data=data, group=group)
+
+
+        # ---------- plots ----------x
+        if not legend_title_text: legend_title_text = group
+        groups = data[group].unique()
+        traces = []
+        c=-1
+        for g in groups:
+            c+=1
+            if g != 'Na' and g != 'other':
+                df    = data.loc[(data[group] == g), ['trials_2', 'percentages', 'reaction_time_ms_mean']]
+                trace = go.Scatter(x=df.trials_2, y=df.percentages, mode='lines+markers', name='{}'.format(g),
+                        line=dict(color='black'), 
+                        marker=dict(
+                            size=df['reaction_time_ms_mean']/100,
+                            color=colours[c],
+                            opacity=0.75,
+                            line=dict(color='white')))
+                traces.append(trace)
+        
+        if mean_plot:
+            print('----------------------')
+            print(df.head())
+            df = data.groupby('trials_2').agg({
+                'percentages'           :'mean', 
+                'reaction_time_ms_mean' :'mean'
+                }).reset_index()
+            g  = 'aggregate'
+            trace = go.Scatter(x=df.trials_2, y=df['percentages'], mode='lines+markers', name='{}'.format(g),
+                    line=dict(color='black'), 
+                    marker=dict(
+                        size=df['reaction_time_ms_mean']/100,
+                        color=colours[-1],
+                        opacity=0.75,
+                        line=dict(color='white'))
+                        )
+            traces.append(trace)
+
+
+        layout  = go.Layout(title=title, xaxis=xaxis, yaxis=yaxis, template=template, legend_title_text=legend_title_text, width=width, height=height)
+        fig     = go.Figure(data=traces, layout=layout)
+        return {'figure': fig, 'data':data}
+    
+
+
+# group_var='corsi_group'
+# group_var='random_participants'
+# data = wcst_performance(group=group_var, mean_plot=True)
+# data['figure']
+
+
+    def scatter_plot(self, data, xvar, yvar, group_var=False, xlab='', ylab='', title='', cols=sum([px.colors.sequential.Plasma*3], [])):
 
         if not group_var: 
             data = data[[xvar, yvar]].dropna()
             traces = [go.Scatter(x=data[xvar], y=data[yvar], mode='markers', marker_color=cols[0])]
             layout = go.Layout( title=title, xaxis={'title':xlab}, yaxis={'title':ylab}, template='none')
+            legend_title_text=group_var
         else:
+            legend_title_text=''
             data = data[[xvar, yvar, group_var]].dropna()
             traces = []; c=0
             for g in data[group_var].unique():
                 c += 1
                 dt = data.loc[data[group_var]==g,]
                 traces.append(go.Scatter(x=dt[xvar], y=dt[yvar], mode='markers', marker_color=cols[c], name=g))
-            layout = go.Layout( title=title, xaxis={'title':xlab}, yaxis={'title':ylab}, template='none', legend_title_text='Trend')
+            layout = go.Layout( title=title, xaxis={'title':xlab}, yaxis={'title':ylab}, template='none', legend_title_text=legend_title_text)
         fig = go.Figure(data=traces, layout=layout)
         return fig
 
 
-    def distribution_plot(self, data, xvar, nbinsx=10, opacity=1, group_var=False, xlab='', ylab='', title='', cols=['#A56CC1', '#A6ACEC', '#63F5EF', 'steelblue', 'darkblue', 'blue', 'darkred', '#756384']):
+    # cols=['#A56CC1', '#A6ACEC', '#63F5EF', 'steelblue', 'darkblue', 'blue', 'darkred', '#756384']
+    def distribution_plot(self, data, xvar, nbinsx=10, opacity=1, group_var=False, xlab='', ylab='', title='', cols= px.colors.sequential.Plasma):
         """Distribution of Variable 1"""
         if title=='': 
             if group_var: title = 'Distribution of ' + str(xvar) + ' by ' + str(group_var)
@@ -146,7 +375,10 @@ class summary_plots_and_figures:
             return fig
 
 
-    def ANOVA(self, data, group_var, value_var, resetIndex=False):
+    def ANOVA(self, data, group_var, value_var):
+        data[data.columns[data.dtypes=='string']]=data[data.columns[data.dtypes=='string']].astype(object)
+        if not group_var:
+            group_var = 'demographics_handedness_a'
         # Create ANOVA backbone table
         raw_data = [['Between Groups', '', '', '', '', '', ''], ['Within Groups', '', '', '', '', '', ''], ['Total', '', '', '', '', '', '']] 
         anova_table = pd.DataFrame(raw_data, columns = ['Source of Variation', 'SS', 'df', 'MS', 'F', 'P-value', 'F crit']) 
@@ -188,17 +420,14 @@ class summary_plots_and_figures:
             alpha /= 2
         anova_table['F crit']['Between Groups'] = stats.f.ppf(1-alpha, anova_table['df']['Between Groups'], anova_table['df']['Within Groups'])
 
-        # Final ANOVA Table
-        if resetIndex:
-            x = anova_table
-            new_cols = [(a + ' ' + b) for a,b in x.columns]
-            x.columns = new_cols
-            x = x.reset_index()
-            return x
-        else: return anova_table
+        return anova_table.reset_index()
     
 
     def compute_summary_stats(self, data, value_var='wcst_RT', group_var='demographics_education_a', resetIndex=False):
+        data = data.dropna()
+        if not group_var:
+            data['data'] = 'all data' 
+            group_var = 'data'
         x = data.groupby(group_var).agg({
             'wcst_accuracy':            ['mean', 'std'],
             'wcst_RT':                  'mean',
@@ -213,13 +442,17 @@ class summary_plots_and_figures:
             new_cols = [(a + ' ' + b) for a,b in x.columns]
             x.columns = new_cols
             x = x.reset_index()
-            return x
-        else: return x
+            return x.round(2)
+        else: return x.round(2)
 
 
     def basic_pie_chart(self, dummy_var, labels, colors, title, df):
+        if not dummy_var: dummy_var='dummy_var'; df[dummy_var] = 'all'
+        if not labels: labels=df[dummy_var].unique()
         sub    = df[[dummy_var]].value_counts()
         values = sub.tolist()
+        labels =  [x for x in labels if str(x) != '<NA>']
+        print(labels)
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
         fig.update_traces(textfont_size=15, marker=dict(colors=colors, line=dict(color='white', width=0)))
         fig.update(layout_title_text=title)

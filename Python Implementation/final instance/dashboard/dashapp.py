@@ -35,7 +35,9 @@ app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # ---- fetch data object ----x
 with open('../data objects/batch_processing_object_with_encodings.pkl', 'rb') as file2:
-    ed = pickle.load(file2)
+    # ed = pickle.load(file2)
+    ed = pd.read_pickle(file2)
+
 spf = summary_plots_and_figures(ed)
 spf.create_performance_groupings(10)
 spf.random_participants_sample(10)
@@ -74,8 +76,9 @@ clrs = {
 
 app.layout = dbc.Container([
     html.Div('Neuropsychological Data Analysis', style={'color': '#555555', 'fontSize': 25, 'margin':'15px', 'text-align': 'center'}),
-    dbc.Row([html.Div('We\'re a cognitive neuroscience research unit comparing human vs Artificial Intelligence learning in dynamic task. We\'re working to use Statistical Learning to reverse engineer human cognition.', style={'color': '#555555', 'fontSize': 12, 'margin-right':'20px', 'text-align': 'center'})], justify="center", align="center"),
-    html.Label([html.A('Connect with us!', href='https://github.com/ZachWolpe/Dynocog')], style={'color': '#555555', 'fontSize': 12, 'margin-right':'20px', 'text-align': 'center'}),
+    dbc.Row([html.Div('We\'re a cognitive neuroscience research unit comparing human & Artificial Intelligence learning in dynamic decision making tasks under uncertainty. We\'re utilising Statistical Learning to reverse engineer neurological executive functions. This interactive tools aims to aid in one\'s intuitive understanding about relationships in the data. In affliantion with University of Helsinki & University of Cape Town.', style={'color': '#555555', 'fontSize': 12, 'margin-right':'20px', 'text-align': 'center'})], justify="center", align="center"),
+    html.Label([html.A('Connect with us!',href='https://raw.githubusercontent.com/ZachWolpe/Dynocog/main/images/description.png')], #href='https://github.com/ZachWolpe/Dynocog'
+    style={'color': '#555555', 'fontSize': 12, 'margin-right':'20px', 'text-align': 'center'}),
     dbc.Row([
         dbc.Col([
             html.Div('', style={'margin-top':'30px'}),
