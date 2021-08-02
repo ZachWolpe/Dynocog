@@ -308,13 +308,6 @@ class summary_plots_and_figures:
         return {'figure': fig, 'data':data}
     
 
-
-# group_var='corsi_group'
-# group_var='random_participants'
-# data = wcst_performance(group=group_var, mean_plot=True)
-# data['figure']
-
-
     def scatter_plot(self, data, xvar, yvar, group_var=False, xlab='', ylab='', title='', cols=sum([px.colors.sequential.Plasma*3], [])):
 
         if not group_var: 
