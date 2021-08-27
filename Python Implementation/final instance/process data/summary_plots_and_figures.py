@@ -91,6 +91,8 @@ class summary_plots_and_figures:
             basic_distributional_plots  : plot
             compute_summary_stats       : table
             ANOVA                       : table
+                
+                 deprecated: out of date
             """
         print(message)
 
@@ -112,8 +114,7 @@ class summary_plots_and_figures:
         self.ed.summary_table = spd
 
 
-
-    def compute_wcst_performance_trial_bins(self, n_bins=10):
+    def compute_wcst_performance_trial_bins(self, n_bins=10, use_seq=None, g=1):
         """Return: DataFrame capturing the performance per n_bins trials"""
         wcst_data=self.ed.raw.wcst_data
 
@@ -124,6 +125,53 @@ class summary_plots_and_figures:
 
         # ---- status==1 --> correct
         t = np.linspace(0,100,num=n_bins+1).tolist(); c=0
+
+        #--- if SEQ is true ---x
+        seq=[10, 9, 8, 8, 7, 5, 6, 7, 5, 5, 7, 6, 5, 6]
+        def return_breakpoints(g=1, options=[1,2,3,4,5], cum_seq=[10,19,27,35,42,47,53,60,65,70,77,83,88,94,100]):
+            def grps(grp): return [i // grp for i in range(len(cum_seq))]
+            breakpoints = [0]
+            xx=grps(g)
+            for i in range(1,len(xx)):
+                if    (xx[i]!=xx[i-1]) & (i!=(len(xx)-1)):  breakpoints.append(i-1) 
+                if    i==(len(xx)-1):                       breakpoints.append(i)
+            return list(map(cum_seq.__getitem__, breakpoints))
+        if use_seq is not None: 
+            t=return_breakpoints(g)
+            t[:0] = [0]
+
+        for tt in t[1:]:
+            c +=1
+            x = df.loc[df['trial_no'] < tt,].groupby(['participant', 'status']).agg({
+            'participant':              ['count'],
+            'reaction_time_ms':         ['mean', 'std'],
+            'perseverance_error':       ['mean'],
+            'not_perseverance_error':   ['mean']
+            }).reset_index()
+            x['percentages'] = x[('participant', 'count')]/tt
+            x['trials']      = str(round(t[c-1])) + '-' + str(round(t[c]))
+            x['trials_2']    = t[c]
+            if c==1:    data=x
+            else:       data=data.append(other=x)
+
+        # if x>0 --> perseverance_error > not_perseverance_error --> main error=perseverance_error
+        data['main_error'] = np.where(data['perseverance_error'] - data['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
+        self.wcst_performance = data
+    
+
+
+    def compute_wcst_performance_trial_bins_deprecated(self, n_bins=10, use_seq=None, seq=[10, 9, 8, 8, 7, 5, 6, 7, 5, 5, 7, 6, 5, 6]):
+        """Return: DataFrame capturing the performance per n_bins trials"""
+        wcst_data=self.ed.raw.wcst_data
+
+        # ---- add trial number ----x
+        xx = []; df = wcst_data
+        [xx.append((i%100)+1) for i in range(df.shape[0])]
+        df['trial_no'] = xx 
+
+        # ---- status==1 --> correct
+        t = np.linspace(0,100,num=n_bins+1).tolist(); c=0
+        #if use_seq is not None: t=seq
 
         for tt in t[1:]:
             c +=1
@@ -235,7 +283,7 @@ class summary_plots_and_figures:
         xaxis={'title':'trials'}, 
         yaxis={'title':'% Correct'}, 
         template='none', 
-        legend_title_text='', width=900, height=500):
+        legend_title_text='', width=900, height=500, show_vlines=False):
 
         # ---- fetch data ----x
         summary_data=self.ed.summary_table.copy()
@@ -285,8 +333,6 @@ class summary_plots_and_figures:
                 traces.append(trace)
         
         if mean_plot:
-            print('----------------------')
-            print(df.head())
             df = data.groupby('trials_2').agg({
                 'percentages'           :'mean', 
                 'reaction_time_ms_mean' :'mean'
@@ -302,9 +348,12 @@ class summary_plots_and_figures:
                         )
             traces.append(trace)
 
-
         layout  = go.Layout(title=title, xaxis=xaxis, yaxis=yaxis, template=template, legend_title_text=legend_title_text, width=width, height=height)
         fig     = go.Figure(data=traces, layout=layout)
+
+        if show_vlines:
+            cum_seq=[10,19,27,35,42,47,53,60,65,70,77,83,88,94,100]
+            for c in cum_seq: fig.add_vline(x=c, line_width=0.75, line_dash='dash', line_color='steelblue')
         return {'figure': fig, 'data':data}
     
 
@@ -445,7 +494,6 @@ class summary_plots_and_figures:
         sub    = df[[dummy_var]].value_counts()
         values = sub.tolist()
         labels =  [x for x in labels if str(x) != '<NA>']
-        print(labels)
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
         fig.update_traces(textfont_size=15, marker=dict(colors=colors, line=dict(color='white', width=0)))
         fig.update(layout_title_text=title)

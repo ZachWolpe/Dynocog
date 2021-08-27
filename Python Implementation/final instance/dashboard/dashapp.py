@@ -1,5 +1,6 @@
 
 from typing import Text
+from dash_bootstrap_components._components.Col import Col
 
 from pandas.io.formats import style
 from dash_core_components.Dropdown import Dropdown
@@ -24,6 +25,7 @@ import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
+import dash_daq as daq
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 
@@ -98,13 +100,24 @@ app.layout = dbc.Container([
         dbc.Col(dcc.Graph(id='summary_plot_1'))
     ]),
     dbc.Row([
-    dbc.Col(html.Div('Colour scheme'), width=4),
-    dbc.Col([dcc.Dropdown(id='colours', options=colours_choice, value='Plasma')])
-                ]),
-    dbc.Row([
-        dbc.Col(html.Div('Trial batch size'), width=4),
-        dbc.Col(dcc.Slider(id='n_groups', min=0, max=20, step=1, value=10))
-                ]),
+        dbc.Col([
+            dbc.Row([
+                dbc.Col(html.Div('Colour scheme'), width=4),
+                dbc.Col([dcc.Dropdown(id='colours', options=colours_choice, value='Plasma')])
+                            ]),
+            dbc.Row([
+                dbc.Col(html.Div('Trial batch size'), width=4),
+                dbc.Col(dcc.Slider(id='wcst_groups', min=1, max=10, step=1, value=1)) # options: [1,2,3,4,5]
+                        ]),
+        ], width=6),
+        dbc.Col([
+                daq.ToggleSwitch(id='vlines', value=False, label='Show forced error points', color='#ABE2FB', labelPosition='left'),
+                dbc.Row([
+                    dbc.Col(html.Div('N groups'), width=3),
+                    dbc.Col(dcc.Slider(id='n_groups', min=0, max=10, step=1, value=5))]),
+        ])
+    ]),
+
 
     dbc.Col(dcc.Graph(id='wcst_plot')),
     dbc.Row([
@@ -126,15 +139,17 @@ app.layout = dbc.Container([
     Output(component_id='summary_plot_2',               component_property='figure'),
 
     Input(component_id='colours',                       component_property='value'),
+    Input(component_id='wcst_groups',                   component_property='value'),
     Input(component_id='n_groups',                      component_property='value'),
     Input(component_id='varx',                          component_property='value'),
     Input(component_id='vary',                          component_property='value'),
-    Input(component_id='group',                         component_property='value')
+    Input(component_id='group',                         component_property='value'),
+    Input(component_id='vlines',                        component_property='value')
     )
-def update_output_div(colours, n_groups, varx, vary, group):
+def update_output_div(colours, wcst_groups, n_groups, varx, vary, group, vlines):
     spf.create_performance_groupings(n_groups)
     spf.random_participants_sample(n_groups)
-    spf.compute_wcst_performance_trial_bins(n_groups)
+    spf.compute_wcst_performance_trial_bins(n_groups, use_seq=True, g=wcst_groups)
     x    = spf.compute_summary_stats(data=spf.ed.summary_table, value_var=varx, group_var=group, resetIndex=True)
     dt1  = html.Div([
         html.Div('Average Scores per Group', style={'color': '#555555', 'fontSize': 20, 'margin':'10px'}),
@@ -160,7 +175,7 @@ def update_output_div(colours, n_groups, varx, vary, group):
                 style_data=dict(backgroundColor="#fffafa")
             )
         ])
-    wcst = spf.wcst_performance_plot(group=group, colours=clrs[colours], mean_plot=True)['figure'] 
+    wcst = spf.wcst_performance_plot(group=group, colours=clrs[colours], mean_plot=True, show_vlines=vlines)['figure'] 
     grp  = spf.basic_pie_chart(df=spf.ed.summary_table, dummy_var=group, colors=clrs[colours], labels=None, title='Group Distribution: '+group) 
     sm1  = spf.scatter_plot(data=spf.ed.summary_table, group_var=group, xvar=varx, yvar=vary, xlab=varx, cols=clrs[colours], ylab=vary, title='Raw Data')
     sm2  = spf.distribution_plot(data=spf.ed.summary_table, nbinsx=50, xvar=varx, group_var=group, title='Distributions over: ' + varx, cols=clrs[colours]) 
