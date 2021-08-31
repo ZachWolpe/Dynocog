@@ -81,18 +81,53 @@ class summary_plots_and_figures:
         # ============================================== Demographics ==============================================
 
     
-
-    
     def available_data(self):
         message = """
-            scatter_plot                : plot
-            distribution_plot           : plot
-            basic_pie_chart             : plot
-            basic_distributional_plots  : plot
-            compute_summary_stats       : table
-            ANOVA                       : table
-                
-                 deprecated: out of date
+        ---- Metadata ---------------------------------------------------------------------------*
+            
+            continuous_vars                     : continuous vars available
+            categorical_vars                    : categorical vars available
+            demographic_groups                  : categorical demographics data
+            demographic_cont_vars               : continuous demographics data
+            demo_pie_map                        : demographics pie chart
+            demo_continuous_naming              : demographics continuous names
+        
+        ---- Methods ----------------------------------------------------------------------------*
+
+            create_performance_groupings        : compute performance bins (per task)
+                                                : input:    ed.summary_table 
+                                                : output:   ed.summary_table
+
+            compute_wcst_performance_trial_bins : capturing the performance per n_bins trials
+                                                : input:    ed.raw.wcst_data
+                                                : output:   wcst_performance
+
+
+            random_participants_sample          : groupby random sample
+                                                : input:    ed.summary_table
+                                                : ouput:    ed.summary_table
+
+        ---- Visualizations ---------------------------------------------------------------------*
+            
+            basic_pie_chart                     : pie chart
+            basic_distributional_plots          : distribution plot
+            wcst_performance_plot               : vis wcst performacne per group
+                                                : input:    ed.summary_table
+                                                            wcst_performance
+                                                : output:   figure and data
+            scatter_plot                        : raw scatter plot
+                                                : input:    ed.summary_table
+            distribution_plot                   : distribution over a given variable
+                                                : input:    ed.summary_table
+            
+        ---- Statistical Tests ------------------------------------------------------------------*       
+            
+            compute_summary_stats               : compute summary table
+            ANOVA                               : 2-way ANOVA
+                                                : input:    group variable
+                                                : output:   value variable
+
+        -----------------------------------------------------------------------------------------*                         
             """
         print(message)
 
@@ -529,5 +564,3 @@ class summary_plots_and_figures:
 
 
 
-
-    
