@@ -132,7 +132,11 @@ class summary_plots_and_figures:
         print(message)
 
     def create_performance_groupings(self, n_steps=10):
-        """Compute Performance Bins (per task)"""
+        """
+        Compute Performance Bins (per task)
+
+        RETURN:     adds tables [aa] to self.ed.summary_table capturing performance bins.
+        """
         aa = ['nback_group', 'fitts_group','corsi_group','navon_group','wcst_group']
         bb = ['nback_status', 'fitts_mean_deviation', 'corsi_block_span', 'navon_perc_correct', 'wcst_accuracy']
         spd=self.ed.summary_table
@@ -149,8 +153,82 @@ class summary_plots_and_figures:
         self.ed.summary_table = spd
 
 
-    def compute_wcst_performance_trial_bins(self, n_bins=10, use_seq=None, g=1):
-        """Return: DataFrame capturing the performance per n_bins trials"""
+    def compute_wcst_performance_trial_bins(self, g=5, g_options=[1,3,5,15], print_tests=False):
+        """
+        compute WCST performance bins
+        
+        Return: DataFrame capturing the performance per n_bins trials"""
+        if g not in g_options: 
+            message = """
+            ***********************************************************************
+            FAILURE: INVALID g value
+
+                g               = {}
+                valid g range   = [1,3,5,15]
+
+            please use valid g value - see `g_options` argument
+            ***********************************************************************
+            """.format(g)
+            print(message)
+        else:
+            # ---- wcst data ----*
+            df=self.ed.raw.wcst_data.copy()
+
+            # ---- add trial number ----*
+            xx = []
+            [xx.append((i%100)+1) for i in range(df.shape[0])]
+            df['trial_no'] = xx 
+
+            # ---- split into n groups -----*
+            options = [1,3,5,15]; 
+            o=3 # select o per group
+            cum_sum = [10,19,27,35,42,47,53,60,65,70,77,83,88,94,100]
+            groups = [i//o for i in range(15)]
+
+            # ---- identify unique groups ----*
+            breakpoints = []
+            for t in range(1, len(groups[1:])+1):
+                if groups[t] != groups[t-1] and t!=len(groups[1:]): breakpoints.append(cum_sum[t-1])
+                elif t==len(groups[1:]):                            breakpoints.append(cum_sum[t])
+            breakpoints[0] = 0
+
+            # ----- create bins ----*
+            wcst_bins          = []
+            df['trail_groups'] = np.nan
+            df['correct']      = df['status'] == 1
+            for b in range(1, len(breakpoints)): 
+                B   = breakpoints[b]
+                B_1 = breakpoints[b-1]
+                grp = str(B_1) + '-' + str(B)
+                wcst_bins.append(grp)
+                df.loc[(df['trial_no'] > B_1) & (df['trial_no'] <= B), 'trail_groups'] = grp
+
+            # ----- test ----x
+            if print_tests:
+                print('groups:      ', groups)
+                print('cum_sum:     ', cum_sum)
+                print('breakpoints: ', breakpoints)
+                print('wcst_bins:   ', wcst_bins)
+
+            # ---- compute aggregate statistics ----*
+            df = df.groupby(['participant', 'trail_groups']).agg({
+                'participant':              ['count'],
+                'correct':                  ['mean'],
+                'reaction_time_ms':         ['mean', 'std'],
+                'perseverance_error':       ['mean'],
+                'not_perseverance_error':   ['mean']
+            })
+            df['main_error'] = np.where(df['perseverance_error'] - df['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
+            self.wcst_performance = df
+            
+
+
+
+    def compute_wcst_performance_trial_bins_deprecated(self, n_bins=10, use_seq=None, g=1):
+        """
+        compute WCST performance bins
+        
+        Return: DataFrame capturing the performance per n_bins trials"""
         wcst_data=self.ed.raw.wcst_data
 
         # ---- add trial number ----x
