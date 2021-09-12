@@ -2,13 +2,30 @@
 
 A brief description of the file structures used, to allow the user to efficiently navigate the _"final instance"_ section of the repo.
 
-### dashboard
-  - **dashapp.py**
-    - The full script of the plotly-dash AI app.
-    - dashapp_tester.ipynb: testing environment.
+The sub-directories key:
 
+ - *1-9*: _numbers_ indicate order of computation.
+ -*i*: _indenpendent_ directory.
+ -*s*: _storage_ store data/class objects.
+
+### dashboard
+
+_This directory hosts the dashboard._
+
+  - **dashapp.py**
+    - 1 page, model-free analysis, dashapp script.
+  - **dashboard_multitab.py**
+    - Final, multitab, dashapp script.
+  - **dashapp_tester.ipynb**
+    - Testing environment.
+  
+  ##### assets
+    - assets for the dashapp
 
 ### data objects
+
+_This directory hosts the stored data class objects._
+
   - **batch_processing_object.pkl**
     - Batch instance of the data after cleaning the raw .txt files.
   - **batch_processing_object_with_encodings.pkl**
@@ -16,7 +33,13 @@ A brief description of the file structures used, to allow the user to efficientl
   
 
 ### exploratory data anaylsis
+
   - Supporting functions and testing implementations of EDA & model free analysis - superseded by the dashapp. To be deprecated at a future date.
+
+  ##### participant summary stats
+    - store a number of summary plots (deprecated)
+
+
 
 ### model-free analysis 
   - Supporting functions and testing implementations of EDA & model free analysis - superseded by the dashapp. To be deprecated at a future date.

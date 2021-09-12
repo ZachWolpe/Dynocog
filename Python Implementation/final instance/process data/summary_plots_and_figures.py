@@ -21,6 +21,14 @@ class summary_plots_and_figures:
     def __init__(self, ed):
         self.ed = ed
         self.wcst_performance = None
+        self.final_data_aggregated = None
+    
+
+        # ============================================== Summary Final Data ==============================================
+        summary_data=self.ed.summary_table.copy()
+        x = self.ed.raw.wcst_data.copy().set_index('participant')
+        x.columns = [i+'_wcst' for i in x.columns]
+        self.final_data_unaggregated = x.join(summary_data)
 
         # ============================================== Summary Table Data ==============================================
         self.continuous_vars = [
@@ -83,7 +91,12 @@ class summary_plots_and_figures:
     
     def available_data(self):
         message = """
-        ---- Metadata ---------------------------------------------------------------------------*
+        ---- New Tables ------------------------------------------------------------------------------*
+
+            final_data_aggregated               : all data (grouped over wcst performance groups)
+            final_data_unaggregated             : all data
+
+        ---- Metadata --------------------------------------------------------------------------------*
             
             continuous_vars                     : continuous vars available
             categorical_vars                    : categorical vars available
@@ -92,7 +105,7 @@ class summary_plots_and_figures:
             demo_pie_map                        : demographics pie chart
             demo_continuous_naming              : demographics continuous names
         
-        ---- Methods ----------------------------------------------------------------------------*
+        ---- Methods ---------------------------------------------------------------------------------*
 
             create_performance_groupings        : compute performance bins (per task)
                                                 : input:    ed.summary_table 
@@ -101,13 +114,13 @@ class summary_plots_and_figures:
             compute_wcst_performance_trial_bins : capturing the performance per n_bins trials
                                                 : input:    ed.raw.wcst_data
                                                 : output:   wcst_performance
-
+                                                :           final_data_aggregated
 
             random_participants_sample          : groupby random sample
                                                 : input:    ed.summary_table
                                                 : ouput:    ed.summary_table
 
-        ---- Visualizations ---------------------------------------------------------------------*
+        ---- Visualizations --------------------------------------------------------------------------*
             
             basic_pie_chart                     : pie chart
             basic_distributional_plots          : distribution plot
@@ -120,14 +133,14 @@ class summary_plots_and_figures:
             distribution_plot                   : distribution over a given variable
                                                 : input:    ed.summary_table
             
-        ---- Statistical Tests ------------------------------------------------------------------*       
+        ---- Statistical Tests -----------------------------------------------------------------------*       
             
             compute_summary_stats               : compute summary table
             ANOVA                               : 2-way ANOVA
                                                 : input:    group variable
                                                 : output:   value variable
 
-        -----------------------------------------------------------------------------------------*                         
+        ----------------------------------------------------------------------------------------------*                         
             """
         print(message)
 
@@ -181,9 +194,8 @@ class summary_plots_and_figures:
 
             # ---- split into n groups -----*
             options = [1,3,5,15]; 
-            o=3 # select o per group
             cum_sum = [10,19,27,35,42,47,53,60,65,70,77,83,88,94,100]
-            groups = [i//o for i in range(15)]
+            groups = [i//g for i in range(15)]
 
             # ---- identify unique groups ----*
             breakpoints = []
@@ -193,15 +205,17 @@ class summary_plots_and_figures:
             breakpoints[0] = 0
 
             # ----- create bins ----*
-            wcst_bins          = []
-            df['trail_groups'] = np.nan
-            df['correct']      = df['status'] == 1
+            wcst_bins                     = []
+            df['trail_groups']            = np.nan
+            df['trail_groups_numeric']    = np.nan
+            df['correct'] = df['status'] == 1
             for b in range(1, len(breakpoints)): 
                 B   = breakpoints[b]
                 B_1 = breakpoints[b-1]
                 grp = str(B_1) + '-' + str(B)
                 wcst_bins.append(grp)
-                df.loc[(df['trial_no'] > B_1) & (df['trial_no'] <= B), 'trail_groups'] = grp
+                df.loc[(df['trial_no'] > B_1) & (df['trial_no'] <= B), 'trail_groups']         = grp
+                df.loc[(df['trial_no'] > B_1) & (df['trial_no'] <= B), 'trail_groups_numeric'] = B
 
             # ----- test ----x
             if print_tests:
@@ -211,8 +225,7 @@ class summary_plots_and_figures:
                 print('wcst_bins:   ', wcst_bins)
 
             # ---- compute aggregate statistics ----*
-            df = df.groupby(['participant', 'trail_groups']).agg({
-                'participant':              ['count'],
+            df = df.groupby(['participant', 'trail_groups', 'trail_groups_numeric']).agg({
                 'correct':                  ['mean'],
                 'reaction_time_ms':         ['mean', 'std'],
                 'perseverance_error':       ['mean'],
@@ -220,6 +233,16 @@ class summary_plots_and_figures:
             })
             df['main_error'] = np.where(df['perseverance_error'] - df['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
             self.wcst_performance = df
+
+            # ----------------------------------- compute final dataframe -----------------------------------x
+            summary_data=self.ed.summary_table.copy()
+            wcst_performance_data=df
+
+            # --- join data + compute performance per group ---x
+            x = wcst_performance_data.reset_index(('trail_groups', 'trail_groups_numeric'))
+            x.columns = [i+'_wcst' for i in ['trail_groups', 'trail_groups_numeric', 'correct', 'reaction_time_ms_mean', 'reaction_time_ms_std', 'perseverance_error', 'not_perseverance_error', 'main']]
+            self.final_data_aggregated = x.join(summary_data)
+            
             
 
 
@@ -269,7 +292,7 @@ class summary_plots_and_figures:
 
         # if x>0 --> perseverance_error > not_perseverance_error --> main error=perseverance_error
         data['main_error'] = np.where(data['perseverance_error'] - data['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
-        self.wcst_performance = data
+        self.wcst_performance = data.reset_index()
     
 
 
@@ -303,6 +326,8 @@ class summary_plots_and_figures:
         # if x>0 --> perseverance_error > not_perseverance_error --> main error=perseverance_error
         data['main_error'] = np.where(data['perseverance_error'] - data['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
         self.wcst_performance = data
+
+
     
     #---- random sample of n participants ----x
     def random_participants_sample(self, n=10):
@@ -391,70 +416,61 @@ class summary_plots_and_figures:
     def wcst_performance_plot(
         self, group='corsi_group', 
         mean_plot=False,
-        colours=px.colors.sequential.Plasma,
+        colours=sum([px.colors.sequential.Plasma*3], []),
         title='WCST Performance', 
         xaxis={'title':'trials'}, 
         yaxis={'title':'% Correct'}, 
         template='none', 
         legend_title_text='', width=900, height=500, show_vlines=False):
 
-        # ---- fetch data ----x
-        summary_data=self.ed.summary_table.copy()
-        wcst_performance_data=self.wcst_performance.copy()
+        data = self.final_data_aggregated.copy()
 
-        # --- join data + compute performance per group ---x
-        x = wcst_performance_data.set_index(('participant',''))
-        x = x.loc[x['status']==1,:] #???
-        data = x.join(summary_data)
 
-        # # ---- reset column names ----x
-        cols = []
-        for c in data.columns:
-                if type(c) is tuple: cols.append('_'.join(c).strip('_'))
-                else: cols.append(c)
-        data.columns = cols
-        
         def compute_performance_per_group(data, group):
-            x = data.groupby([group, 'trials_2']).agg({
-                'percentages'           :'mean', 
-                'reaction_time_ms_mean' :'mean'
-                }).reset_index()
-            # x.columns = [xx[0] for xx in x.columns]
-            return x
+            return data.groupby([group, 'trail_groups_numeric_wcst']).agg({
+                'reaction_time_ms_mean_wcst': 'mean',
+                'correct_wcst'              : 'mean'}).reset_index()
         if not group:
-                data['all'] = 'all data' 
-                group = 'all'
+            data.groupby(['trail_groups_numeric_wcst']).agg({
+                'reaction_time_ms_mean_wcst': 'mean',
+                'correct_wcst'              : 'mean'}).reset_index()
         data = compute_performance_per_group(data=data, group=group)
-
 
         # ---------- plots ----------x
         if not legend_title_text: legend_title_text = group
         groups = data[group].unique()
         traces = []
         c=-1
+
+        # percentages ---> correct_wcst
+        # trials_2    ---> trail_groups_numeric_wcst
+        # reaction_time_ms_mean ---> reaction_time_ms_mean_wcst
+        groups
         for g in groups:
             c+=1
             if g != 'Na' and g != 'other':
-                df    = data.loc[(data[group] == g), ['trials_2', 'percentages', 'reaction_time_ms_mean']]
-                trace = go.Scatter(x=df.trials_2, y=df.percentages, mode='lines+markers', name='{}'.format(g),
+                # df    = data.loc[(data[group] == g), ['trials_2', 'correct_wcst', 'reaction_time_ms_mean']]
+                df    = data.loc[(data[group] == g), ['trail_groups_numeric_wcst', 'correct_wcst', 'reaction_time_ms_mean_wcst']].drop_duplicates()
+                trace = go.Scatter(x=df.trail_groups_numeric_wcst, y=df.correct_wcst, mode='lines+markers', name='{}'.format(g),
                         line=dict(color='black'), 
                         marker=dict(
-                            size=df['reaction_time_ms_mean']/100,
+                            size=df['reaction_time_ms_mean_wcst']/100,
                             color=colours[c],
                             opacity=0.75,
-                            line=dict(color='white')))
+                            line=dict(color='white'))
+                            )
                 traces.append(trace)
-        
+                
         if mean_plot:
-            df = data.groupby('trials_2').agg({
-                'percentages'           :'mean', 
-                'reaction_time_ms_mean' :'mean'
+            df = data.groupby('trail_groups_numeric_wcst').agg({
+                'correct_wcst'               :'mean', 
+                'reaction_time_ms_mean_wcst' :'mean'
                 }).reset_index()
             g  = 'aggregate'
-            trace = go.Scatter(x=df.trials_2, y=df['percentages'], mode='lines+markers', name='{}'.format(g),
+            trace = go.Scatter(x=df.trail_groups_numeric_wcst, y=df['correct_wcst'], mode='lines+markers', name='{}'.format(g),
                     line=dict(color='black'), 
                     marker=dict(
-                        size=df['reaction_time_ms_mean']/100,
+                        size=df['reaction_time_ms_mean_wcst']/100,
                         color=colours[-1],
                         opacity=0.75,
                         line=dict(color='white'))
@@ -468,6 +484,74 @@ class summary_plots_and_figures:
             cum_seq=[10,19,27,35,42,47,53,60,65,70,77,83,88,94,100]
             for c in cum_seq: fig.add_vline(x=c, line_width=0.75, line_dash='dash', line_color='steelblue')
         return {'figure': fig, 'data':data}
+
+
+        # # --- join data + compute performance per group ---x
+        # x = wcst_performance_data.set_index(('participant',''))
+        # x = x.loc[x['status']==1,:] #???
+        # data = x.join(summary_data)
+
+        # # # ---- reset column names ----x
+        # cols = []
+        # for c in data.columns:
+        #         if type(c) is tuple: cols.append('_'.join(c).strip('_'))
+        #         else: cols.append(c)
+        # data.columns = cols
+        
+        # def compute_performance_per_group(data, group):
+        #     x = data.groupby([group, 'trials_2']).agg({
+        #         'percentages'           :'mean', 
+        #         'reaction_time_ms_mean' :'mean'
+        #         }).reset_index()
+        #     # x.columns = [xx[0] for xx in x.columns]
+        #     return x
+        # if not group:
+        #         data['all'] = 'all data' 
+        #         group = 'all'
+        # data = compute_performance_per_group(data=data, group=group)
+
+
+        # # ---------- plots ----------x
+        # if not legend_title_text: legend_title_text = group
+        # groups = data[group].unique()
+        # traces = []
+        # c=-1
+        # for g in groups:
+        #     c+=1
+        #     if g != 'Na' and g != 'other':
+        #         df    = data.loc[(data[group] == g), ['trials_2', 'percentages', 'reaction_time_ms_mean']]
+        #         trace = go.Scatter(x=df.trials_2, y=df.percentages, mode='lines+markers', name='{}'.format(g),
+        #                 line=dict(color='black'), 
+        #                 marker=dict(
+        #                     size=df['reaction_time_ms_mean']/100,
+        #                     color=colours[c],
+        #                     opacity=0.75,
+        #                     line=dict(color='white')))
+        #         traces.append(trace)
+        
+        # if mean_plot:
+        #     df = data.groupby('trials_2').agg({
+        #         'percentages'           :'mean', 
+        #         'reaction_time_ms_mean' :'mean'
+        #         }).reset_index()
+        #     g  = 'aggregate'
+        #     trace = go.Scatter(x=df.trials_2, y=df['percentages'], mode='lines+markers', name='{}'.format(g),
+        #             line=dict(color='black'), 
+        #             marker=dict(
+        #                 size=df['reaction_time_ms_mean']/100,
+        #                 color=colours[-1],
+        #                 opacity=0.75,
+        #                 line=dict(color='white'))
+        #                 )
+        #     traces.append(trace)
+
+        # layout  = go.Layout(title=title, xaxis=xaxis, yaxis=yaxis, template=template, legend_title_text=legend_title_text, width=width, height=height)
+        # fig     = go.Figure(data=traces, layout=layout)
+
+        # if show_vlines:
+        #     cum_seq=[10,19,27,35,42,47,53,60,65,70,77,83,88,94,100]
+        #     for c in cum_seq: fig.add_vline(x=c, line_width=0.75, line_dash='dash', line_color='steelblue')
+        # return {'figure': fig, 'data':data}
     
 
     def scatter_plot(self, data, xvar, yvar, group_var=False, xlab='', ylab='', title='', cols=sum([px.colors.sequential.Plasma*3], [])):

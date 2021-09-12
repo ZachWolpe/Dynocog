@@ -151,40 +151,51 @@ class encode_data:
         navon = x
 
         # ----- wcst ----x
-        def compute_performance_trial_bins(n_bins=10, wcst_data=ed.raw.wcst_data):
-            """Return: DataFrame capturing the performance per n_bins triasl"""
+        # DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
 
-            # ---- add trial number ----x
-            xx = []; df = wcst_data
-            [xx.append((i%100)+1) for i in range(df.shape[0])]
-            df['trial_no'] = xx 
+        # def compute_performance_trial_bins(n_bins=10, wcst_data=ed.raw.wcst_data):
+        #     """Return: DataFrame capturing the performance per n_bins triasl"""
 
-            # ---- status==1 --> correct
-            t = np.linspace(0,100,num=n_bins+1).tolist(); c=0
+        #     # ---- add trial number ----x
+        #     xx = []; df = wcst_data
+        #     [xx.append((i%100)+1) for i in range(df.shape[0])]
+        #     df['trial_no'] = xx 
 
-            for tt in t[1:]:
-                c +=1
-                x = df.loc[df['trial_no'] < tt,].groupby(['participant', 'status']).agg({
-                'participant':              ['count'],
-                'reaction_time_ms':         ['mean', 'std'],
-                'perseverance_error':       ['mean'],
-                'not_perseverance_error':   ['mean']
-                }).reset_index()
-                x['percentages'] = x[('participant', 'count')]/tt
-                x['trials']      = str(round(t[c-1])) + '-' + str(round(t[c]))
-                x['trials_2']    = t[c]
-                if c==1:    data=x
-                else:       data=data.append(other=x)
+        #     # ---- status==1 --> correct
+        #     t = np.linspace(0,100,num=n_bins+1).tolist(); c=0
 
-            # if x>0 --> perseverance_error > not_perseverance_error --> main error=perseverance_error
-            data['main_error'] = np.where(data['perseverance_error'] - data['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
+        #     for tt in t[1:]:
+        #         c +=1
+        #         x = df.loc[df['trial_no'] < tt,].groupby(['participant', 'status']).agg({
+        #         'participant':              ['count'],
+        #         'reaction_time_ms':         ['mean', 'std'],
+        #         'perseverance_error':       ['mean'],
+        #         'not_perseverance_error':   ['mean']
+        #         }).reset_index()
+        #         x['percentages'] = x[('participant', 'count')]/tt
+        #         x['trials']      = str(round(t[c-1])) + '-' + str(round(t[c]))
+        #         x['trials_2']    = t[c]
+        #         if c==1:    data=x
+        #         else:       data=data.append(other=x)
 
-            return(data)
+        #     # if x>0 --> perseverance_error > not_perseverance_error --> main error=perseverance_error
+        #     data['main_error'] = np.where(data['perseverance_error'] - data['not_perseverance_error'] > 0, 'perserverance errors', 'non perserverance errors')
 
-        x = compute_performance_trial_bins(n_bins=1)
-        x = x.loc[x['status']==1, [('participant', ''), ('reaction_time_ms', 'mean'), ('percentages', '')]].set_index('participant')
-        x.columns = ['wcst_RT', 'wcst_accuracy']
-        wcst = x
+        #     return(data)
+
+        # x = compute_performance_trial_bins(n_bins=1)
+        # x = x.loc[x['status']==1, [('participant', ''), ('reaction_time_ms', 'mean'), ('percentages', '')]].set_index('participant')
+        # x.columns = ['wcst_RT', 'wcst_accuracy']
+        # wcst = x
+
+        wcst_data = self.ed.raw.wcst_data.copy()
+        wcst_data['correct'] = wcst_data.status==1
+
+        wcst = wcst_data.groupby('participant').agg({
+            'correct': 'mean',
+            'reaction_time_ms': 'mean'
+        })
+        wcst.columns = ['wcst_accuracy', 'wcst_RT']
 
         # ---- demograpics ----x
         x = ed.demographics.set_index('participant')
