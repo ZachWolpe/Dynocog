@@ -51,6 +51,7 @@ _This directory hosts the stored data class objects._
   ##### participant summary stats
     - store a number of summary plots (deprecated)
 
+
 ----------
 
 ### model-free analysis 
