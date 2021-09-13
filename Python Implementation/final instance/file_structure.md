@@ -6,9 +6,10 @@ The sub-directories key:
 
  - *1-9*: _numbers_ indicate order of computation.
  -*i*: _indenpendent_ directory.
- -*s*: _storage_ store data/class objects.
+ -*d*: _data_ class object store.
+ -*s*: _supporting_ file - te sting/supporting file, non-critical & replicated elsewhere.
 
-### dashboard
+### dashboard (_i_)
 
 _This directory hosts the dashboard._
 
@@ -22,7 +23,7 @@ _This directory hosts the dashboard._
   ##### assets
     - assets for the dashapp
 
-### data objects
+### data objects (_d_)
 
 _This directory hosts the stored data class objects._
 
@@ -36,8 +37,12 @@ _This directory hosts the stored data class objects._
 
   - Supporting functions and testing implementations of EDA & model free analysis - superseded by the dashapp. To be deprecated at a future date.
 
-  ##### participant summary stats
+  ##### participant summary stats (_s_)
     - store a number of summary plots (deprecated)
+
+  - **clean_processed_data.ipynb**
+  - **eda.ipynb**
+    - Base 
 
 
 
