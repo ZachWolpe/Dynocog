@@ -1,10 +1,4 @@
-import numpy as np
-import matplotlib.pyplot as plt
-plt.style.use('seaborn-darkgrid')
-import pandas as pd
-import pickle
-import os
-import re
+from dependencies import *
 
 
 class batch_processing:
@@ -61,9 +55,7 @@ class batch_processing:
 
         """
         print(message)
-        
-
-    
+           
     def cache_metadata(self, metadata_path):
         """Store any metadata"""
         self.metadata = pd.read_csv(metadata_path, index_col=False).replace(np.NaN, 'nan')
@@ -139,10 +131,6 @@ class batch_processing:
         """
         print(message)
         self.individual_data = df
-
-
-
-
     
     def mturk_completion_rates(self):
         """Compute the completion rates for each task as well as return the WorkerIDs that completed all Tasks"""
@@ -189,10 +177,6 @@ class batch_processing:
         plt.xticks([])
         plt.show()
 
-
-
-
-
     def create_wcst_data(self):
         df = pd.DataFrame()
         for p in range(self.n):
@@ -238,7 +222,6 @@ class batch_processing:
         print(message)
         self.wcst_data = df
 
-
     def create_navon_data(self):
         df = pd.DataFrame()
         for p in range(self.n):
@@ -274,7 +257,6 @@ class batch_processing:
         """
         print(message)
         self.navon_data = df
-
 
     def create_nback_data(self):
             df = pd.DataFrame()
@@ -317,7 +299,6 @@ class batch_processing:
             print(message)
             self.nback_data = df
 
-
     def create_corsi_data(self):
         df = pd.DataFrame()
         for p in range(self.n):
@@ -350,8 +331,6 @@ class batch_processing:
         """
         print(message)
         self.corsi_data = df
-
-
 
     def create_fitts_data(self):
         df = pd.DataFrame()
@@ -391,10 +370,7 @@ class batch_processing:
         print(message)
         self.fitts_data = df
 
-
     # -------------- precess meta
-
-
     def convert_data_to_int(self):
         """Change the schema of the dataframes to include integers"""
         # converter function
@@ -424,7 +400,6 @@ class batch_processing:
         """
         print(message)
 
-
     def write_to_pickle(self, path):
         """Write the data to pickle files"""
         try: os.mkdir(path)
@@ -445,7 +420,6 @@ class batch_processing:
         ------------------------------------------------------------------
         """.format(path)
         print(message)
-
 
     def read_from_pickle(self, path):
         """Read the data to pickle files"""
@@ -468,7 +442,6 @@ class batch_processing:
         ------------------------------------------------------------------
         """.format(path)
         print(message)
-
 
     def write_class_to_pickle(self, path):
         """serialize object to pickle object"""
