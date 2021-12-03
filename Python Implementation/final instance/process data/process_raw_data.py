@@ -1,4 +1,17 @@
-from dependencies import *
+# from dependencies import *
+# base modules
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+import re
+import torch
+import sys
+from tqdm import tqdm
+import pickle
+import plotly.express as px
+import plotly.graph_objects as go
+import warnings
 
 
 class batch_processing:
