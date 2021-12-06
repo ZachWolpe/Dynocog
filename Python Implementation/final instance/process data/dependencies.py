@@ -1,23 +1,29 @@
 
 
 # ========================================= Project Dependencies ========================================= #
-# base modules
-import numpy as np
-import pandas as pd
+# visualization modules
+import plotly.graph_objects as go
 import matplotlib.pyplot as plt
+import plotly.express as px
+
+# statistical modules
+from scipy import stats
+import pandas as pd
+import numpy as np
+import torch
+
+# software dev modules
+from tqdm import tqdm
+import warnings
+import pickle
+import sys
 import os
 import re
-import torch
-import sys
-from tqdm import tqdm
-import pickle
-import plotly.express as px
-import plotly.graph_objects as go
-import warnings
 
 # custom modules
 from process_raw_data import batch_processing
 from encode_processed_data import encode_data
+from summary_plots_and_figures import summary_plots_and_figures
 
 # user settings
 plt.style.use('seaborn-darkgrid')
