@@ -2,6 +2,7 @@
 
 # ========================================= Project Dependencies ========================================= #
 # visualization modules
+from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import plotly.express as px
