@@ -6,6 +6,7 @@ from plotly.subplots            import make_subplots
 import plotly.graph_objects     as go
 import matplotlib.pyplot        as plt
 import plotly.express           as px
+import arviz                    as az
 
 # statistical modules
 from sklearn.linear_model       import RidgeCV, SGDRegressor, BayesianRidge, ElasticNetCV, LarsCV, LassoCV, LassoLars, LassoLarsCV, LassoLarsIC, LinearRegression
@@ -24,10 +25,11 @@ from statsmodels.formula.api    import ols
 from mrmr                       import mrmr_regression
 from scipy                      import stats
 import statsmodels.api          as sm
-
 import pandas                   as pd
 import numpy                    as np
+import pystan
 import torch
+
 
 
 # software dev modules
